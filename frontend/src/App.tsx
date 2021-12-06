@@ -29,7 +29,7 @@ function App() {
         setContractAddress(addr);
         setDeployState("Redeploy");
       }
-    } catch (err) {
+    } catch (err: any) {
       setErrorMsg(err.stack)
       setDeployState("Error! - Retry Deploy");
     }
@@ -51,7 +51,7 @@ function App() {
       if (!res.ok) {
         setErrorMsg(error)
       }
-    } catch(err) {
+    } catch(err: any) {
       setErrorMsg(err.stack)
     }
     setLoading(false);
@@ -68,13 +68,13 @@ function App() {
       } else {
         setValue(x);
       }
-    } catch(err) {
+    } catch(err: any) {
       setErrorMsg(err.stack)
     }
     setLoading(false);
   }
 
-  function handleChange(event) {
+  function handleChange(event: any) {
     setDesiredValue(event.target.value);
   }
 
@@ -95,7 +95,7 @@ function App() {
         <p>
           <button type="button" className="App-button" disabled={loading || !contractAddress} onClick={getContractValue}>{value}</button>
         </p>
-        { errorMsg && <pre class="App-error">
+        { errorMsg && <pre className="App-error">
           Error: {errorMsg}
         </pre>}
       </header>
