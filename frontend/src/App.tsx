@@ -1,5 +1,6 @@
 import React from 'react';
 import Home from './pages/home/Home';
+require('dotenv').config()
 // import { Route, Router, Routes } from 'react-router-dom';
 
 
