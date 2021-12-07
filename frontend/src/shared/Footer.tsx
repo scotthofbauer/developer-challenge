@@ -20,7 +20,7 @@ const Footer = () => {
                         React App with Material UI
                     </Typography>
                     <Typography component="p">
-                    @2018 All right reserved
+                    @2021 All right reserved
                     </Typography>
                 </footer>
             </Grid>
