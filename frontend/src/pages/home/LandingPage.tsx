@@ -1,7 +1,7 @@
 import React from 'react'
 import { Button} from '@mui/material';
 import { makeStyles } from '@mui/styles';
-import { getTotalSupply } from '../../api/Api';
+import { mintToken } from '../../api/Api';
 export interface LandingPageProps {
     address: string | null;
 }
@@ -37,8 +37,8 @@ const LandingPage: React.FC<LandingPageProps> = ({address}: LandingPageProps) =>
 
     const handleClick = async () => {
         if(address){
-            const totalSupply = await getTotalSupply(address);
-            console.log('totalSupply: ', totalSupply);
+            const tokenResult = await mintToken(address);
+            console.log('tokenResult: ', tokenResult);
         }
     }
 

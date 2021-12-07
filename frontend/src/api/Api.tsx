@@ -4,14 +4,14 @@ const contractUrl = "https://u0rymjyyct-u0fj2prbvx-connect.us0-aws.kaleido.io/in
 const contractInstance = axios.create({
     baseURL: contractUrl,
     timeout: 1000,
-    headers: {'Authorization': 'Basic dTBiMHYxZm5jdTpKS1Y5MzZUc0xTcXRnZFREVEdZOGZtWGNrV0xJZkNjemZiMkNQMFJvUDdz'}
+    headers: {'Authorization': `Basic ${process.env.REACT_APP_BASIC_CREDS}`}
 });
 
-const consortiaInstance = axios.create({
-    baseURL: process.env.REACT_APP_KALIEDO_BASE_URL,
-    timeout: 1000,
-    headers: {'Authorization': `Bearer ${process.env.REACT_APP_API_KEY}`}
-});
+// const consortiaInstance = axios.create({
+//     baseURL: process.env.REACT_APP_KALIEDO_BASE_URL,
+//     timeout: 1000,
+//     headers: {'Authorization': `Bearer ${process.env.REACT_APP_API_KEY}`}
+// });
 
 
 export const getTotalSupply  = async (address: string) => {
@@ -23,7 +23,28 @@ export const getTotalSupply  = async (address: string) => {
         });
         return res.data;
     }catch (error: any){
-        console.log("error: ", error);
+        console.log("error getting supply: ", error);
     }
 }
 
+export const mintToken = async (address: string) => {
+    try{
+        const totalSupplyResponse = await getTotalSupply(address);
+        let tokenCount = parseInt(totalSupplyResponse.output);
+        let nextTokenId = tokenCount+1;
+        const res = await contractInstance.post('/mint', 
+        {
+            'to': `${address}`,
+            'tokenId': nextTokenId.toString()
+        },
+        {
+            params: {
+                'kld-from': address
+            },
+
+        });
+        return res.data
+    }catch(error: any) {
+        console.log("error minting: ", error);
+    }
+}
