@@ -4,7 +4,7 @@ const contractUrl = "https://u0rymjyyct-u0fj2prbvx-connect.us0-aws.kaleido.io/in
 const contractInstance = axios.create({
     baseURL: contractUrl,
     timeout: 1000,
-    headers: {'Authorization': `Basic ${process.env.REACT_APP_BASIC_CREDS}`}
+    headers: {'Authorization': 'Basic dTBiMHYxZm5jdTpKS1Y5MzZUc0xTcXRnZFREVEdZOGZtWGNrV0xJZkNjemZiMkNQMFJvUDdz'}
 });
 
 // const consortiaInstance = axios.create({
@@ -39,7 +39,7 @@ export const mintToken = async (address: string) => {
         },
         {
             params: {
-                'kld-from': address
+                'kld-from': '0xb8c4717638b27b0c85f0f2996187c1079d655622'
             },
 
         });

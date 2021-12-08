@@ -1,6 +1,5 @@
-import React, { useEffect, useState } from 'react';
-import { AppBar, Button, IconButton, Link, Toolbar, Typography } from '@mui/material';
-import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
+import React from 'react';
+import { AppBar, Button, Link, Toolbar, Typography } from '@mui/material';
 import { makeStyles } from '@mui/styles';
 
 export interface HeaderProps {
@@ -35,8 +34,7 @@ const Header: React.FC<HeaderProps> = ({address}: HeaderProps) => {
                             underline='none'
                             onClick={() => {
                                 console.info("I'm a button.");
-                            }}
-                            
+                            }}                            
                         >
                             Browse
                         </Link>
