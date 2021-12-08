@@ -1,0 +1,9 @@
+{
+  "PORT": 4000,
+  "KALEIDO_REST_GATEWAY_URL": "https://u0rymjyyct-u0fj2prbvx-connect.us0-aws.kaleido.io/",
+  "KALEIDO_AUTH_USERNAME": "u0b0v1fncu",
+  "KALEIDO_AUTH_PASSWORD": "JKV936TsLSqtgdTDTGY8fmXckWLIfCczfb2CP0RoP7s",
+  "FROM_ADDRESS": "0xB8C4717638B27B0C85f0F2996187c1079D655622",
+  "CONTRACT_MAIN_SOURCE_FILE": "simplestorage.sol", 
+  "CONTRACT_CLASS_NAME": "simplestorage"
+}
