@@ -2,150 +2,113 @@
 /* eslint-disable */
 // this is an auto generated file. This will be overwritten
 
-export const getBlog = /* GraphQL */ `
-  query GetBlog($id: ID!) {
-    getBlog(id: $id) {
-      id
-      name
-      posts {
-        items {
-          id
-          title
-          createdAt
-          updatedAt
-          blogPostsId
-        }
-        nextToken
-      }
-      createdAt
-      updatedAt
-    }
-  }
-`;
-export const listBlogs = /* GraphQL */ `
-  query ListBlogs(
-    $filter: ModelBlogFilterInput
-    $limit: Int
-    $nextToken: String
-  ) {
-    listBlogs(filter: $filter, limit: $limit, nextToken: $nextToken) {
-      items {
-        id
-        name
-        posts {
-          nextToken
-        }
-        createdAt
-        updatedAt
-      }
-      nextToken
-    }
-  }
-`;
-export const getPost = /* GraphQL */ `
-  query GetPost($id: ID!) {
-    getPost(id: $id) {
+export const getContract = /* GraphQL */ `
+  query GetContract($id: ID!) {
+    getContract(id: $id) {
       id
       title
-      blog {
-        id
-        name
-        posts {
-          nextToken
-        }
-        createdAt
-        updatedAt
-      }
-      comments {
+      gatewayAPIId
+      isERCBurnable
+      isERCMintable
+      isERC721
+      isERC20
+      creator
+      contractName
+      tokens {
         items {
           id
           content
           createdAt
           updatedAt
-          postCommentsId
+          contractTokensId
         }
         nextToken
       }
       createdAt
       updatedAt
-      blogPostsId
     }
   }
 `;
-export const listPosts = /* GraphQL */ `
-  query ListPosts(
-    $filter: ModelPostFilterInput
+export const listContracts = /* GraphQL */ `
+  query ListContracts(
+    $filter: ModelContractFilterInput
     $limit: Int
     $nextToken: String
   ) {
-    listPosts(filter: $filter, limit: $limit, nextToken: $nextToken) {
+    listContracts(filter: $filter, limit: $limit, nextToken: $nextToken) {
       items {
         id
         title
-        blog {
-          id
-          name
-          createdAt
-          updatedAt
-        }
-        comments {
+        gatewayAPIId
+        isERCBurnable
+        isERCMintable
+        isERC721
+        isERC20
+        creator
+        contractName
+        tokens {
           nextToken
         }
         createdAt
         updatedAt
-        blogPostsId
       }
       nextToken
     }
   }
 `;
-export const getComment = /* GraphQL */ `
-  query GetComment($id: ID!) {
-    getComment(id: $id) {
+export const getToken = /* GraphQL */ `
+  query GetToken($id: ID!) {
+    getToken(id: $id) {
       id
-      post {
+      contract {
         id
         title
-        blog {
-          id
-          name
-          createdAt
-          updatedAt
-        }
-        comments {
+        gatewayAPIId
+        isERCBurnable
+        isERCMintable
+        isERC721
+        isERC20
+        creator
+        contractName
+        tokens {
           nextToken
         }
         createdAt
         updatedAt
-        blogPostsId
       }
       content
       createdAt
       updatedAt
-      postCommentsId
+      contractTokensId
     }
   }
 `;
-export const listComments = /* GraphQL */ `
-  query ListComments(
-    $filter: ModelCommentFilterInput
+export const listTokens = /* GraphQL */ `
+  query ListTokens(
+    $filter: ModelTokenFilterInput
     $limit: Int
     $nextToken: String
   ) {
-    listComments(filter: $filter, limit: $limit, nextToken: $nextToken) {
+    listTokens(filter: $filter, limit: $limit, nextToken: $nextToken) {
       items {
         id
-        post {
+        contract {
           id
           title
+          gatewayAPIId
+          isERCBurnable
+          isERCMintable
+          isERC721
+          isERC20
+          creator
+          contractName
           createdAt
           updatedAt
-          blogPostsId
         }
         content
         createdAt
         updatedAt
-        postCommentsId
+        contractTokensId
       }
       nextToken
     }

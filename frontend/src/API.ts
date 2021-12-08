@@ -2,16 +2,30 @@
 /* eslint-disable */
 //  This file was automatically generated and should not be edited.
 
-export type CreateBlogInput = {
+export type CreateContractInput = {
   id?: string | null,
-  name: string,
+  title: string,
+  gatewayAPIId: string,
+  isERCBurnable: boolean,
+  isERCMintable: boolean,
+  isERC721: boolean,
+  isERC20: boolean,
+  creator: string,
+  contractName: string,
 };
 
-export type ModelBlogConditionInput = {
-  name?: ModelStringInput | null,
-  and?: Array< ModelBlogConditionInput | null > | null,
-  or?: Array< ModelBlogConditionInput | null > | null,
-  not?: ModelBlogConditionInput | null,
+export type ModelContractConditionInput = {
+  title?: ModelStringInput | null,
+  gatewayAPIId?: ModelStringInput | null,
+  isERCBurnable?: ModelBooleanInput | null,
+  isERCMintable?: ModelBooleanInput | null,
+  isERC721?: ModelBooleanInput | null,
+  isERC20?: ModelBooleanInput | null,
+  creator?: ModelStringInput | null,
+  contractName?: ModelStringInput | null,
+  and?: Array< ModelContractConditionInput | null > | null,
+  or?: Array< ModelContractConditionInput | null > | null,
+  not?: ModelContractConditionInput | null,
 };
 
 export type ModelStringInput = {
@@ -54,69 +68,73 @@ export type ModelSizeInput = {
   between?: Array< number | null > | null,
 };
 
-export type Blog = {
-  __typename: "Blog",
-  id: string,
-  name: string,
-  posts?: ModelPostConnection | null,
-  createdAt: string,
-  updatedAt: string,
+export type ModelBooleanInput = {
+  ne?: boolean | null,
+  eq?: boolean | null,
+  attributeExists?: boolean | null,
+  attributeType?: ModelAttributeTypes | null,
 };
 
-export type ModelPostConnection = {
-  __typename: "ModelPostConnection",
-  items:  Array<Post >,
-  nextToken?: string | null,
-};
-
-export type Post = {
-  __typename: "Post",
+export type Contract = {
+  __typename: "Contract",
   id: string,
   title: string,
-  blog?: Blog | null,
-  comments?: ModelCommentConnection | null,
+  gatewayAPIId: string,
+  isERCBurnable: boolean,
+  isERCMintable: boolean,
+  isERC721: boolean,
+  isERC20: boolean,
+  creator: string,
+  contractName: string,
+  tokens?: ModelTokenConnection | null,
   createdAt: string,
   updatedAt: string,
-  blogPostsId?: string | null,
 };
 
-export type ModelCommentConnection = {
-  __typename: "ModelCommentConnection",
-  items:  Array<Comment >,
+export type ModelTokenConnection = {
+  __typename: "ModelTokenConnection",
+  items:  Array<Token >,
   nextToken?: string | null,
 };
 
-export type Comment = {
-  __typename: "Comment",
+export type Token = {
+  __typename: "Token",
   id: string,
-  post?: Post | null,
+  contract?: Contract | null,
   content: string,
   createdAt: string,
   updatedAt: string,
-  postCommentsId?: string | null,
+  contractTokensId?: string | null,
 };
 
-export type UpdateBlogInput = {
+export type UpdateContractInput = {
   id: string,
-  name?: string | null,
+  title?: string | null,
+  gatewayAPIId?: string | null,
+  isERCBurnable?: boolean | null,
+  isERCMintable?: boolean | null,
+  isERC721?: boolean | null,
+  isERC20?: boolean | null,
+  creator?: string | null,
+  contractName?: string | null,
 };
 
-export type DeleteBlogInput = {
+export type DeleteContractInput = {
   id: string,
 };
 
-export type CreatePostInput = {
+export type CreateTokenInput = {
   id?: string | null,
-  title: string,
-  blogPostsId?: string | null,
+  content: string,
+  contractTokensId?: string | null,
 };
 
-export type ModelPostConditionInput = {
-  title?: ModelStringInput | null,
-  and?: Array< ModelPostConditionInput | null > | null,
-  or?: Array< ModelPostConditionInput | null > | null,
-  not?: ModelPostConditionInput | null,
-  blogPostsId?: ModelIDInput | null,
+export type ModelTokenConditionInput = {
+  content?: ModelStringInput | null,
+  and?: Array< ModelTokenConditionInput | null > | null,
+  or?: Array< ModelTokenConditionInput | null > | null,
+  not?: ModelTokenConditionInput | null,
+  contractTokensId?: ModelIDInput | null,
 };
 
 export type ModelIDInput = {
@@ -135,393 +153,275 @@ export type ModelIDInput = {
   size?: ModelSizeInput | null,
 };
 
-export type UpdatePostInput = {
-  id: string,
-  title?: string | null,
-  blogPostsId?: string | null,
-};
-
-export type DeletePostInput = {
-  id: string,
-};
-
-export type CreateCommentInput = {
-  id?: string | null,
-  content: string,
-  postCommentsId?: string | null,
-};
-
-export type ModelCommentConditionInput = {
-  content?: ModelStringInput | null,
-  and?: Array< ModelCommentConditionInput | null > | null,
-  or?: Array< ModelCommentConditionInput | null > | null,
-  not?: ModelCommentConditionInput | null,
-  postCommentsId?: ModelIDInput | null,
-};
-
-export type UpdateCommentInput = {
+export type UpdateTokenInput = {
   id: string,
   content?: string | null,
-  postCommentsId?: string | null,
+  contractTokensId?: string | null,
 };
 
-export type DeleteCommentInput = {
+export type DeleteTokenInput = {
   id: string,
 };
 
-export type ModelBlogFilterInput = {
-  id?: ModelIDInput | null,
-  name?: ModelStringInput | null,
-  and?: Array< ModelBlogFilterInput | null > | null,
-  or?: Array< ModelBlogFilterInput | null > | null,
-  not?: ModelBlogFilterInput | null,
-};
-
-export type ModelBlogConnection = {
-  __typename: "ModelBlogConnection",
-  items:  Array<Blog >,
-  nextToken?: string | null,
-};
-
-export type ModelPostFilterInput = {
+export type ModelContractFilterInput = {
   id?: ModelIDInput | null,
   title?: ModelStringInput | null,
-  and?: Array< ModelPostFilterInput | null > | null,
-  or?: Array< ModelPostFilterInput | null > | null,
-  not?: ModelPostFilterInput | null,
-  blogPostsId?: ModelIDInput | null,
+  gatewayAPIId?: ModelStringInput | null,
+  isERCBurnable?: ModelBooleanInput | null,
+  isERCMintable?: ModelBooleanInput | null,
+  isERC721?: ModelBooleanInput | null,
+  isERC20?: ModelBooleanInput | null,
+  creator?: ModelStringInput | null,
+  contractName?: ModelStringInput | null,
+  and?: Array< ModelContractFilterInput | null > | null,
+  or?: Array< ModelContractFilterInput | null > | null,
+  not?: ModelContractFilterInput | null,
 };
 
-export type ModelCommentFilterInput = {
+export type ModelContractConnection = {
+  __typename: "ModelContractConnection",
+  items:  Array<Contract >,
+  nextToken?: string | null,
+};
+
+export type ModelTokenFilterInput = {
   id?: ModelIDInput | null,
   content?: ModelStringInput | null,
-  and?: Array< ModelCommentFilterInput | null > | null,
-  or?: Array< ModelCommentFilterInput | null > | null,
-  not?: ModelCommentFilterInput | null,
-  postCommentsId?: ModelIDInput | null,
+  and?: Array< ModelTokenFilterInput | null > | null,
+  or?: Array< ModelTokenFilterInput | null > | null,
+  not?: ModelTokenFilterInput | null,
+  contractTokensId?: ModelIDInput | null,
 };
 
-export type CreateBlogMutationVariables = {
-  input: CreateBlogInput,
-  condition?: ModelBlogConditionInput | null,
+export type CreateContractMutationVariables = {
+  input: CreateContractInput,
+  condition?: ModelContractConditionInput | null,
 };
 
-export type CreateBlogMutation = {
-  createBlog?:  {
-    __typename: "Blog",
-    id: string,
-    name: string,
-    posts?:  {
-      __typename: "ModelPostConnection",
-      items:  Array< {
-        __typename: "Post",
-        id: string,
-        title: string,
-        createdAt: string,
-        updatedAt: string,
-        blogPostsId?: string | null,
-      } >,
-      nextToken?: string | null,
-    } | null,
-    createdAt: string,
-    updatedAt: string,
-  } | null,
-};
-
-export type UpdateBlogMutationVariables = {
-  input: UpdateBlogInput,
-  condition?: ModelBlogConditionInput | null,
-};
-
-export type UpdateBlogMutation = {
-  updateBlog?:  {
-    __typename: "Blog",
-    id: string,
-    name: string,
-    posts?:  {
-      __typename: "ModelPostConnection",
-      items:  Array< {
-        __typename: "Post",
-        id: string,
-        title: string,
-        createdAt: string,
-        updatedAt: string,
-        blogPostsId?: string | null,
-      } >,
-      nextToken?: string | null,
-    } | null,
-    createdAt: string,
-    updatedAt: string,
-  } | null,
-};
-
-export type DeleteBlogMutationVariables = {
-  input: DeleteBlogInput,
-  condition?: ModelBlogConditionInput | null,
-};
-
-export type DeleteBlogMutation = {
-  deleteBlog?:  {
-    __typename: "Blog",
-    id: string,
-    name: string,
-    posts?:  {
-      __typename: "ModelPostConnection",
-      items:  Array< {
-        __typename: "Post",
-        id: string,
-        title: string,
-        createdAt: string,
-        updatedAt: string,
-        blogPostsId?: string | null,
-      } >,
-      nextToken?: string | null,
-    } | null,
-    createdAt: string,
-    updatedAt: string,
-  } | null,
-};
-
-export type CreatePostMutationVariables = {
-  input: CreatePostInput,
-  condition?: ModelPostConditionInput | null,
-};
-
-export type CreatePostMutation = {
-  createPost?:  {
-    __typename: "Post",
+export type CreateContractMutation = {
+  createContract?:  {
+    __typename: "Contract",
     id: string,
     title: string,
-    blog?:  {
-      __typename: "Blog",
-      id: string,
-      name: string,
-      posts?:  {
-        __typename: "ModelPostConnection",
-        nextToken?: string | null,
-      } | null,
-      createdAt: string,
-      updatedAt: string,
-    } | null,
-    comments?:  {
-      __typename: "ModelCommentConnection",
+    gatewayAPIId: string,
+    isERCBurnable: boolean,
+    isERCMintable: boolean,
+    isERC721: boolean,
+    isERC20: boolean,
+    creator: string,
+    contractName: string,
+    tokens?:  {
+      __typename: "ModelTokenConnection",
       items:  Array< {
-        __typename: "Comment",
+        __typename: "Token",
         id: string,
         content: string,
         createdAt: string,
         updatedAt: string,
-        postCommentsId?: string | null,
+        contractTokensId?: string | null,
       } >,
       nextToken?: string | null,
     } | null,
     createdAt: string,
     updatedAt: string,
-    blogPostsId?: string | null,
   } | null,
 };
 
-export type UpdatePostMutationVariables = {
-  input: UpdatePostInput,
-  condition?: ModelPostConditionInput | null,
+export type UpdateContractMutationVariables = {
+  input: UpdateContractInput,
+  condition?: ModelContractConditionInput | null,
 };
 
-export type UpdatePostMutation = {
-  updatePost?:  {
-    __typename: "Post",
+export type UpdateContractMutation = {
+  updateContract?:  {
+    __typename: "Contract",
     id: string,
     title: string,
-    blog?:  {
-      __typename: "Blog",
-      id: string,
-      name: string,
-      posts?:  {
-        __typename: "ModelPostConnection",
-        nextToken?: string | null,
-      } | null,
-      createdAt: string,
-      updatedAt: string,
-    } | null,
-    comments?:  {
-      __typename: "ModelCommentConnection",
+    gatewayAPIId: string,
+    isERCBurnable: boolean,
+    isERCMintable: boolean,
+    isERC721: boolean,
+    isERC20: boolean,
+    creator: string,
+    contractName: string,
+    tokens?:  {
+      __typename: "ModelTokenConnection",
       items:  Array< {
-        __typename: "Comment",
+        __typename: "Token",
         id: string,
         content: string,
         createdAt: string,
         updatedAt: string,
-        postCommentsId?: string | null,
+        contractTokensId?: string | null,
       } >,
       nextToken?: string | null,
     } | null,
     createdAt: string,
     updatedAt: string,
-    blogPostsId?: string | null,
   } | null,
 };
 
-export type DeletePostMutationVariables = {
-  input: DeletePostInput,
-  condition?: ModelPostConditionInput | null,
+export type DeleteContractMutationVariables = {
+  input: DeleteContractInput,
+  condition?: ModelContractConditionInput | null,
 };
 
-export type DeletePostMutation = {
-  deletePost?:  {
-    __typename: "Post",
+export type DeleteContractMutation = {
+  deleteContract?:  {
+    __typename: "Contract",
     id: string,
     title: string,
-    blog?:  {
-      __typename: "Blog",
-      id: string,
-      name: string,
-      posts?:  {
-        __typename: "ModelPostConnection",
-        nextToken?: string | null,
-      } | null,
-      createdAt: string,
-      updatedAt: string,
-    } | null,
-    comments?:  {
-      __typename: "ModelCommentConnection",
+    gatewayAPIId: string,
+    isERCBurnable: boolean,
+    isERCMintable: boolean,
+    isERC721: boolean,
+    isERC20: boolean,
+    creator: string,
+    contractName: string,
+    tokens?:  {
+      __typename: "ModelTokenConnection",
       items:  Array< {
-        __typename: "Comment",
+        __typename: "Token",
         id: string,
         content: string,
         createdAt: string,
         updatedAt: string,
-        postCommentsId?: string | null,
+        contractTokensId?: string | null,
       } >,
       nextToken?: string | null,
     } | null,
     createdAt: string,
     updatedAt: string,
-    blogPostsId?: string | null,
   } | null,
 };
 
-export type CreateCommentMutationVariables = {
-  input: CreateCommentInput,
-  condition?: ModelCommentConditionInput | null,
+export type CreateTokenMutationVariables = {
+  input: CreateTokenInput,
+  condition?: ModelTokenConditionInput | null,
 };
 
-export type CreateCommentMutation = {
-  createComment?:  {
-    __typename: "Comment",
+export type CreateTokenMutation = {
+  createToken?:  {
+    __typename: "Token",
     id: string,
-    post?:  {
-      __typename: "Post",
+    contract?:  {
+      __typename: "Contract",
       id: string,
       title: string,
-      blog?:  {
-        __typename: "Blog",
-        id: string,
-        name: string,
-        createdAt: string,
-        updatedAt: string,
-      } | null,
-      comments?:  {
-        __typename: "ModelCommentConnection",
+      gatewayAPIId: string,
+      isERCBurnable: boolean,
+      isERCMintable: boolean,
+      isERC721: boolean,
+      isERC20: boolean,
+      creator: string,
+      contractName: string,
+      tokens?:  {
+        __typename: "ModelTokenConnection",
         nextToken?: string | null,
       } | null,
       createdAt: string,
       updatedAt: string,
-      blogPostsId?: string | null,
     } | null,
     content: string,
     createdAt: string,
     updatedAt: string,
-    postCommentsId?: string | null,
+    contractTokensId?: string | null,
   } | null,
 };
 
-export type UpdateCommentMutationVariables = {
-  input: UpdateCommentInput,
-  condition?: ModelCommentConditionInput | null,
+export type UpdateTokenMutationVariables = {
+  input: UpdateTokenInput,
+  condition?: ModelTokenConditionInput | null,
 };
 
-export type UpdateCommentMutation = {
-  updateComment?:  {
-    __typename: "Comment",
+export type UpdateTokenMutation = {
+  updateToken?:  {
+    __typename: "Token",
     id: string,
-    post?:  {
-      __typename: "Post",
+    contract?:  {
+      __typename: "Contract",
       id: string,
       title: string,
-      blog?:  {
-        __typename: "Blog",
-        id: string,
-        name: string,
-        createdAt: string,
-        updatedAt: string,
-      } | null,
-      comments?:  {
-        __typename: "ModelCommentConnection",
+      gatewayAPIId: string,
+      isERCBurnable: boolean,
+      isERCMintable: boolean,
+      isERC721: boolean,
+      isERC20: boolean,
+      creator: string,
+      contractName: string,
+      tokens?:  {
+        __typename: "ModelTokenConnection",
         nextToken?: string | null,
       } | null,
       createdAt: string,
       updatedAt: string,
-      blogPostsId?: string | null,
     } | null,
     content: string,
     createdAt: string,
     updatedAt: string,
-    postCommentsId?: string | null,
+    contractTokensId?: string | null,
   } | null,
 };
 
-export type DeleteCommentMutationVariables = {
-  input: DeleteCommentInput,
-  condition?: ModelCommentConditionInput | null,
+export type DeleteTokenMutationVariables = {
+  input: DeleteTokenInput,
+  condition?: ModelTokenConditionInput | null,
 };
 
-export type DeleteCommentMutation = {
-  deleteComment?:  {
-    __typename: "Comment",
+export type DeleteTokenMutation = {
+  deleteToken?:  {
+    __typename: "Token",
     id: string,
-    post?:  {
-      __typename: "Post",
+    contract?:  {
+      __typename: "Contract",
       id: string,
       title: string,
-      blog?:  {
-        __typename: "Blog",
-        id: string,
-        name: string,
-        createdAt: string,
-        updatedAt: string,
-      } | null,
-      comments?:  {
-        __typename: "ModelCommentConnection",
+      gatewayAPIId: string,
+      isERCBurnable: boolean,
+      isERCMintable: boolean,
+      isERC721: boolean,
+      isERC20: boolean,
+      creator: string,
+      contractName: string,
+      tokens?:  {
+        __typename: "ModelTokenConnection",
         nextToken?: string | null,
       } | null,
       createdAt: string,
       updatedAt: string,
-      blogPostsId?: string | null,
     } | null,
     content: string,
     createdAt: string,
     updatedAt: string,
-    postCommentsId?: string | null,
+    contractTokensId?: string | null,
   } | null,
 };
 
-export type GetBlogQueryVariables = {
+export type GetContractQueryVariables = {
   id: string,
 };
 
-export type GetBlogQuery = {
-  getBlog?:  {
-    __typename: "Blog",
+export type GetContractQuery = {
+  getContract?:  {
+    __typename: "Contract",
     id: string,
-    name: string,
-    posts?:  {
-      __typename: "ModelPostConnection",
+    title: string,
+    gatewayAPIId: string,
+    isERCBurnable: boolean,
+    isERCMintable: boolean,
+    isERC721: boolean,
+    isERC20: boolean,
+    creator: string,
+    contractName: string,
+    tokens?:  {
+      __typename: "ModelTokenConnection",
       items:  Array< {
-        __typename: "Post",
+        __typename: "Token",
         id: string,
-        title: string,
+        content: string,
         createdAt: string,
         updatedAt: string,
-        blogPostsId?: string | null,
+        contractTokensId?: string | null,
       } >,
       nextToken?: string | null,
     } | null,
@@ -530,21 +430,28 @@ export type GetBlogQuery = {
   } | null,
 };
 
-export type ListBlogsQueryVariables = {
-  filter?: ModelBlogFilterInput | null,
+export type ListContractsQueryVariables = {
+  filter?: ModelContractFilterInput | null,
   limit?: number | null,
   nextToken?: string | null,
 };
 
-export type ListBlogsQuery = {
-  listBlogs?:  {
-    __typename: "ModelBlogConnection",
+export type ListContractsQuery = {
+  listContracts?:  {
+    __typename: "ModelContractConnection",
     items:  Array< {
-      __typename: "Blog",
+      __typename: "Contract",
       id: string,
-      name: string,
-      posts?:  {
-        __typename: "ModelPostConnection",
+      title: string,
+      gatewayAPIId: string,
+      isERCBurnable: boolean,
+      isERCMintable: boolean,
+      isERC721: boolean,
+      isERC20: boolean,
+      creator: string,
+      contractName: string,
+      tokens?:  {
+        __typename: "ModelTokenConnection",
         nextToken?: string | null,
       } | null,
       createdAt: string,
@@ -554,393 +461,244 @@ export type ListBlogsQuery = {
   } | null,
 };
 
-export type GetPostQueryVariables = {
+export type GetTokenQueryVariables = {
   id: string,
 };
 
-export type GetPostQuery = {
-  getPost?:  {
-    __typename: "Post",
+export type GetTokenQuery = {
+  getToken?:  {
+    __typename: "Token",
     id: string,
-    title: string,
-    blog?:  {
-      __typename: "Blog",
-      id: string,
-      name: string,
-      posts?:  {
-        __typename: "ModelPostConnection",
-        nextToken?: string | null,
-      } | null,
-      createdAt: string,
-      updatedAt: string,
-    } | null,
-    comments?:  {
-      __typename: "ModelCommentConnection",
-      items:  Array< {
-        __typename: "Comment",
-        id: string,
-        content: string,
-        createdAt: string,
-        updatedAt: string,
-        postCommentsId?: string | null,
-      } >,
-      nextToken?: string | null,
-    } | null,
-    createdAt: string,
-    updatedAt: string,
-    blogPostsId?: string | null,
-  } | null,
-};
-
-export type ListPostsQueryVariables = {
-  filter?: ModelPostFilterInput | null,
-  limit?: number | null,
-  nextToken?: string | null,
-};
-
-export type ListPostsQuery = {
-  listPosts?:  {
-    __typename: "ModelPostConnection",
-    items:  Array< {
-      __typename: "Post",
+    contract?:  {
+      __typename: "Contract",
       id: string,
       title: string,
-      blog?:  {
-        __typename: "Blog",
-        id: string,
-        name: string,
-        createdAt: string,
-        updatedAt: string,
-      } | null,
-      comments?:  {
-        __typename: "ModelCommentConnection",
+      gatewayAPIId: string,
+      isERCBurnable: boolean,
+      isERCMintable: boolean,
+      isERC721: boolean,
+      isERC20: boolean,
+      creator: string,
+      contractName: string,
+      tokens?:  {
+        __typename: "ModelTokenConnection",
         nextToken?: string | null,
       } | null,
       createdAt: string,
       updatedAt: string,
-      blogPostsId?: string | null,
-    } >,
-    nextToken?: string | null,
-  } | null,
-};
-
-export type GetCommentQueryVariables = {
-  id: string,
-};
-
-export type GetCommentQuery = {
-  getComment?:  {
-    __typename: "Comment",
-    id: string,
-    post?:  {
-      __typename: "Post",
-      id: string,
-      title: string,
-      blog?:  {
-        __typename: "Blog",
-        id: string,
-        name: string,
-        createdAt: string,
-        updatedAt: string,
-      } | null,
-      comments?:  {
-        __typename: "ModelCommentConnection",
-        nextToken?: string | null,
-      } | null,
-      createdAt: string,
-      updatedAt: string,
-      blogPostsId?: string | null,
     } | null,
     content: string,
     createdAt: string,
     updatedAt: string,
-    postCommentsId?: string | null,
+    contractTokensId?: string | null,
   } | null,
 };
 
-export type ListCommentsQueryVariables = {
-  filter?: ModelCommentFilterInput | null,
+export type ListTokensQueryVariables = {
+  filter?: ModelTokenFilterInput | null,
   limit?: number | null,
   nextToken?: string | null,
 };
 
-export type ListCommentsQuery = {
-  listComments?:  {
-    __typename: "ModelCommentConnection",
+export type ListTokensQuery = {
+  listTokens?:  {
+    __typename: "ModelTokenConnection",
     items:  Array< {
-      __typename: "Comment",
+      __typename: "Token",
       id: string,
-      post?:  {
-        __typename: "Post",
+      contract?:  {
+        __typename: "Contract",
         id: string,
         title: string,
+        gatewayAPIId: string,
+        isERCBurnable: boolean,
+        isERCMintable: boolean,
+        isERC721: boolean,
+        isERC20: boolean,
+        creator: string,
+        contractName: string,
         createdAt: string,
         updatedAt: string,
-        blogPostsId?: string | null,
       } | null,
       content: string,
       createdAt: string,
       updatedAt: string,
-      postCommentsId?: string | null,
+      contractTokensId?: string | null,
     } >,
     nextToken?: string | null,
   } | null,
 };
 
-export type OnCreateBlogSubscription = {
-  onCreateBlog?:  {
-    __typename: "Blog",
-    id: string,
-    name: string,
-    posts?:  {
-      __typename: "ModelPostConnection",
-      items:  Array< {
-        __typename: "Post",
-        id: string,
-        title: string,
-        createdAt: string,
-        updatedAt: string,
-        blogPostsId?: string | null,
-      } >,
-      nextToken?: string | null,
-    } | null,
-    createdAt: string,
-    updatedAt: string,
-  } | null,
-};
-
-export type OnUpdateBlogSubscription = {
-  onUpdateBlog?:  {
-    __typename: "Blog",
-    id: string,
-    name: string,
-    posts?:  {
-      __typename: "ModelPostConnection",
-      items:  Array< {
-        __typename: "Post",
-        id: string,
-        title: string,
-        createdAt: string,
-        updatedAt: string,
-        blogPostsId?: string | null,
-      } >,
-      nextToken?: string | null,
-    } | null,
-    createdAt: string,
-    updatedAt: string,
-  } | null,
-};
-
-export type OnDeleteBlogSubscription = {
-  onDeleteBlog?:  {
-    __typename: "Blog",
-    id: string,
-    name: string,
-    posts?:  {
-      __typename: "ModelPostConnection",
-      items:  Array< {
-        __typename: "Post",
-        id: string,
-        title: string,
-        createdAt: string,
-        updatedAt: string,
-        blogPostsId?: string | null,
-      } >,
-      nextToken?: string | null,
-    } | null,
-    createdAt: string,
-    updatedAt: string,
-  } | null,
-};
-
-export type OnCreatePostSubscription = {
-  onCreatePost?:  {
-    __typename: "Post",
+export type OnCreateContractSubscription = {
+  onCreateContract?:  {
+    __typename: "Contract",
     id: string,
     title: string,
-    blog?:  {
-      __typename: "Blog",
-      id: string,
-      name: string,
-      posts?:  {
-        __typename: "ModelPostConnection",
-        nextToken?: string | null,
-      } | null,
-      createdAt: string,
-      updatedAt: string,
-    } | null,
-    comments?:  {
-      __typename: "ModelCommentConnection",
+    gatewayAPIId: string,
+    isERCBurnable: boolean,
+    isERCMintable: boolean,
+    isERC721: boolean,
+    isERC20: boolean,
+    creator: string,
+    contractName: string,
+    tokens?:  {
+      __typename: "ModelTokenConnection",
       items:  Array< {
-        __typename: "Comment",
+        __typename: "Token",
         id: string,
         content: string,
         createdAt: string,
         updatedAt: string,
-        postCommentsId?: string | null,
+        contractTokensId?: string | null,
       } >,
       nextToken?: string | null,
     } | null,
     createdAt: string,
     updatedAt: string,
-    blogPostsId?: string | null,
   } | null,
 };
 
-export type OnUpdatePostSubscription = {
-  onUpdatePost?:  {
-    __typename: "Post",
+export type OnUpdateContractSubscription = {
+  onUpdateContract?:  {
+    __typename: "Contract",
     id: string,
     title: string,
-    blog?:  {
-      __typename: "Blog",
-      id: string,
-      name: string,
-      posts?:  {
-        __typename: "ModelPostConnection",
-        nextToken?: string | null,
-      } | null,
-      createdAt: string,
-      updatedAt: string,
-    } | null,
-    comments?:  {
-      __typename: "ModelCommentConnection",
+    gatewayAPIId: string,
+    isERCBurnable: boolean,
+    isERCMintable: boolean,
+    isERC721: boolean,
+    isERC20: boolean,
+    creator: string,
+    contractName: string,
+    tokens?:  {
+      __typename: "ModelTokenConnection",
       items:  Array< {
-        __typename: "Comment",
+        __typename: "Token",
         id: string,
         content: string,
         createdAt: string,
         updatedAt: string,
-        postCommentsId?: string | null,
+        contractTokensId?: string | null,
       } >,
       nextToken?: string | null,
     } | null,
     createdAt: string,
     updatedAt: string,
-    blogPostsId?: string | null,
   } | null,
 };
 
-export type OnDeletePostSubscription = {
-  onDeletePost?:  {
-    __typename: "Post",
+export type OnDeleteContractSubscription = {
+  onDeleteContract?:  {
+    __typename: "Contract",
     id: string,
     title: string,
-    blog?:  {
-      __typename: "Blog",
-      id: string,
-      name: string,
-      posts?:  {
-        __typename: "ModelPostConnection",
-        nextToken?: string | null,
-      } | null,
-      createdAt: string,
-      updatedAt: string,
-    } | null,
-    comments?:  {
-      __typename: "ModelCommentConnection",
+    gatewayAPIId: string,
+    isERCBurnable: boolean,
+    isERCMintable: boolean,
+    isERC721: boolean,
+    isERC20: boolean,
+    creator: string,
+    contractName: string,
+    tokens?:  {
+      __typename: "ModelTokenConnection",
       items:  Array< {
-        __typename: "Comment",
+        __typename: "Token",
         id: string,
         content: string,
         createdAt: string,
         updatedAt: string,
-        postCommentsId?: string | null,
+        contractTokensId?: string | null,
       } >,
       nextToken?: string | null,
     } | null,
     createdAt: string,
     updatedAt: string,
-    blogPostsId?: string | null,
   } | null,
 };
 
-export type OnCreateCommentSubscription = {
-  onCreateComment?:  {
-    __typename: "Comment",
+export type OnCreateTokenSubscription = {
+  onCreateToken?:  {
+    __typename: "Token",
     id: string,
-    post?:  {
-      __typename: "Post",
+    contract?:  {
+      __typename: "Contract",
       id: string,
       title: string,
-      blog?:  {
-        __typename: "Blog",
-        id: string,
-        name: string,
-        createdAt: string,
-        updatedAt: string,
-      } | null,
-      comments?:  {
-        __typename: "ModelCommentConnection",
+      gatewayAPIId: string,
+      isERCBurnable: boolean,
+      isERCMintable: boolean,
+      isERC721: boolean,
+      isERC20: boolean,
+      creator: string,
+      contractName: string,
+      tokens?:  {
+        __typename: "ModelTokenConnection",
         nextToken?: string | null,
       } | null,
       createdAt: string,
       updatedAt: string,
-      blogPostsId?: string | null,
     } | null,
     content: string,
     createdAt: string,
     updatedAt: string,
-    postCommentsId?: string | null,
+    contractTokensId?: string | null,
   } | null,
 };
 
-export type OnUpdateCommentSubscription = {
-  onUpdateComment?:  {
-    __typename: "Comment",
+export type OnUpdateTokenSubscription = {
+  onUpdateToken?:  {
+    __typename: "Token",
     id: string,
-    post?:  {
-      __typename: "Post",
+    contract?:  {
+      __typename: "Contract",
       id: string,
       title: string,
-      blog?:  {
-        __typename: "Blog",
-        id: string,
-        name: string,
-        createdAt: string,
-        updatedAt: string,
-      } | null,
-      comments?:  {
-        __typename: "ModelCommentConnection",
+      gatewayAPIId: string,
+      isERCBurnable: boolean,
+      isERCMintable: boolean,
+      isERC721: boolean,
+      isERC20: boolean,
+      creator: string,
+      contractName: string,
+      tokens?:  {
+        __typename: "ModelTokenConnection",
         nextToken?: string | null,
       } | null,
       createdAt: string,
       updatedAt: string,
-      blogPostsId?: string | null,
     } | null,
     content: string,
     createdAt: string,
     updatedAt: string,
-    postCommentsId?: string | null,
+    contractTokensId?: string | null,
   } | null,
 };
 
-export type OnDeleteCommentSubscription = {
-  onDeleteComment?:  {
-    __typename: "Comment",
+export type OnDeleteTokenSubscription = {
+  onDeleteToken?:  {
+    __typename: "Token",
     id: string,
-    post?:  {
-      __typename: "Post",
+    contract?:  {
+      __typename: "Contract",
       id: string,
       title: string,
-      blog?:  {
-        __typename: "Blog",
-        id: string,
-        name: string,
-        createdAt: string,
-        updatedAt: string,
-      } | null,
-      comments?:  {
-        __typename: "ModelCommentConnection",
+      gatewayAPIId: string,
+      isERCBurnable: boolean,
+      isERCMintable: boolean,
+      isERC721: boolean,
+      isERC20: boolean,
+      creator: string,
+      contractName: string,
+      tokens?:  {
+        __typename: "ModelTokenConnection",
         nextToken?: string | null,
       } | null,
       createdAt: string,
       updatedAt: string,
-      blogPostsId?: string | null,
     } | null,
     content: string,
     createdAt: string,
     updatedAt: string,
-    postCommentsId?: string | null,
+    contractTokensId?: string | null,
   } | null,
 };

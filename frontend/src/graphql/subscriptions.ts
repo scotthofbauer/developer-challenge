@@ -2,234 +2,165 @@
 /* eslint-disable */
 // this is an auto generated file. This will be overwritten
 
-export const onCreateBlog = /* GraphQL */ `
-  subscription OnCreateBlog {
-    onCreateBlog {
-      id
-      name
-      posts {
-        items {
-          id
-          title
-          createdAt
-          updatedAt
-          blogPostsId
-        }
-        nextToken
-      }
-      createdAt
-      updatedAt
-    }
-  }
-`;
-export const onUpdateBlog = /* GraphQL */ `
-  subscription OnUpdateBlog {
-    onUpdateBlog {
-      id
-      name
-      posts {
-        items {
-          id
-          title
-          createdAt
-          updatedAt
-          blogPostsId
-        }
-        nextToken
-      }
-      createdAt
-      updatedAt
-    }
-  }
-`;
-export const onDeleteBlog = /* GraphQL */ `
-  subscription OnDeleteBlog {
-    onDeleteBlog {
-      id
-      name
-      posts {
-        items {
-          id
-          title
-          createdAt
-          updatedAt
-          blogPostsId
-        }
-        nextToken
-      }
-      createdAt
-      updatedAt
-    }
-  }
-`;
-export const onCreatePost = /* GraphQL */ `
-  subscription OnCreatePost {
-    onCreatePost {
+export const onCreateContract = /* GraphQL */ `
+  subscription OnCreateContract {
+    onCreateContract {
       id
       title
-      blog {
-        id
-        name
-        posts {
-          nextToken
-        }
-        createdAt
-        updatedAt
-      }
-      comments {
+      gatewayAPIId
+      isERCBurnable
+      isERCMintable
+      isERC721
+      isERC20
+      creator
+      contractName
+      tokens {
         items {
           id
           content
           createdAt
           updatedAt
-          postCommentsId
+          contractTokensId
         }
         nextToken
       }
       createdAt
       updatedAt
-      blogPostsId
     }
   }
 `;
-export const onUpdatePost = /* GraphQL */ `
-  subscription OnUpdatePost {
-    onUpdatePost {
+export const onUpdateContract = /* GraphQL */ `
+  subscription OnUpdateContract {
+    onUpdateContract {
       id
       title
-      blog {
-        id
-        name
-        posts {
-          nextToken
-        }
-        createdAt
-        updatedAt
-      }
-      comments {
+      gatewayAPIId
+      isERCBurnable
+      isERCMintable
+      isERC721
+      isERC20
+      creator
+      contractName
+      tokens {
         items {
           id
           content
           createdAt
           updatedAt
-          postCommentsId
+          contractTokensId
         }
         nextToken
       }
       createdAt
       updatedAt
-      blogPostsId
     }
   }
 `;
-export const onDeletePost = /* GraphQL */ `
-  subscription OnDeletePost {
-    onDeletePost {
+export const onDeleteContract = /* GraphQL */ `
+  subscription OnDeleteContract {
+    onDeleteContract {
       id
       title
-      blog {
-        id
-        name
-        posts {
-          nextToken
-        }
-        createdAt
-        updatedAt
-      }
-      comments {
+      gatewayAPIId
+      isERCBurnable
+      isERCMintable
+      isERC721
+      isERC20
+      creator
+      contractName
+      tokens {
         items {
           id
           content
           createdAt
           updatedAt
-          postCommentsId
+          contractTokensId
         }
         nextToken
       }
       createdAt
       updatedAt
-      blogPostsId
     }
   }
 `;
-export const onCreateComment = /* GraphQL */ `
-  subscription OnCreateComment {
-    onCreateComment {
+export const onCreateToken = /* GraphQL */ `
+  subscription OnCreateToken {
+    onCreateToken {
       id
-      post {
+      contract {
         id
         title
-        blog {
-          id
-          name
-          createdAt
-          updatedAt
-        }
-        comments {
+        gatewayAPIId
+        isERCBurnable
+        isERCMintable
+        isERC721
+        isERC20
+        creator
+        contractName
+        tokens {
           nextToken
         }
         createdAt
         updatedAt
-        blogPostsId
       }
       content
       createdAt
       updatedAt
-      postCommentsId
+      contractTokensId
     }
   }
 `;
-export const onUpdateComment = /* GraphQL */ `
-  subscription OnUpdateComment {
-    onUpdateComment {
+export const onUpdateToken = /* GraphQL */ `
+  subscription OnUpdateToken {
+    onUpdateToken {
       id
-      post {
+      contract {
         id
         title
-        blog {
-          id
-          name
-          createdAt
-          updatedAt
-        }
-        comments {
+        gatewayAPIId
+        isERCBurnable
+        isERCMintable
+        isERC721
+        isERC20
+        creator
+        contractName
+        tokens {
           nextToken
         }
         createdAt
         updatedAt
-        blogPostsId
       }
       content
       createdAt
       updatedAt
-      postCommentsId
+      contractTokensId
     }
   }
 `;
-export const onDeleteComment = /* GraphQL */ `
-  subscription OnDeleteComment {
-    onDeleteComment {
+export const onDeleteToken = /* GraphQL */ `
+  subscription OnDeleteToken {
+    onDeleteToken {
       id
-      post {
+      contract {
         id
         title
-        blog {
-          id
-          name
-          createdAt
-          updatedAt
-        }
-        comments {
+        gatewayAPIId
+        isERCBurnable
+        isERCMintable
+        isERC721
+        isERC20
+        creator
+        contractName
+        tokens {
           nextToken
         }
         createdAt
         updatedAt
-        blogPostsId
       }
       content
       createdAt
       updatedAt
-      postCommentsId
+      contractTokensId
     }
   }
 `;

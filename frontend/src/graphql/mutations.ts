@@ -2,261 +2,183 @@
 /* eslint-disable */
 // this is an auto generated file. This will be overwritten
 
-export const createBlog = /* GraphQL */ `
-  mutation CreateBlog(
-    $input: CreateBlogInput!
-    $condition: ModelBlogConditionInput
+export const createContract = /* GraphQL */ `
+  mutation CreateContract(
+    $input: CreateContractInput!
+    $condition: ModelContractConditionInput
   ) {
-    createBlog(input: $input, condition: $condition) {
-      id
-      name
-      posts {
-        items {
-          id
-          title
-          createdAt
-          updatedAt
-          blogPostsId
-        }
-        nextToken
-      }
-      createdAt
-      updatedAt
-    }
-  }
-`;
-export const updateBlog = /* GraphQL */ `
-  mutation UpdateBlog(
-    $input: UpdateBlogInput!
-    $condition: ModelBlogConditionInput
-  ) {
-    updateBlog(input: $input, condition: $condition) {
-      id
-      name
-      posts {
-        items {
-          id
-          title
-          createdAt
-          updatedAt
-          blogPostsId
-        }
-        nextToken
-      }
-      createdAt
-      updatedAt
-    }
-  }
-`;
-export const deleteBlog = /* GraphQL */ `
-  mutation DeleteBlog(
-    $input: DeleteBlogInput!
-    $condition: ModelBlogConditionInput
-  ) {
-    deleteBlog(input: $input, condition: $condition) {
-      id
-      name
-      posts {
-        items {
-          id
-          title
-          createdAt
-          updatedAt
-          blogPostsId
-        }
-        nextToken
-      }
-      createdAt
-      updatedAt
-    }
-  }
-`;
-export const createPost = /* GraphQL */ `
-  mutation CreatePost(
-    $input: CreatePostInput!
-    $condition: ModelPostConditionInput
-  ) {
-    createPost(input: $input, condition: $condition) {
+    createContract(input: $input, condition: $condition) {
       id
       title
-      blog {
-        id
-        name
-        posts {
-          nextToken
-        }
-        createdAt
-        updatedAt
-      }
-      comments {
+      gatewayAPIId
+      isERCBurnable
+      isERCMintable
+      isERC721
+      isERC20
+      creator
+      contractName
+      tokens {
         items {
           id
           content
           createdAt
           updatedAt
-          postCommentsId
+          contractTokensId
         }
         nextToken
       }
       createdAt
       updatedAt
-      blogPostsId
     }
   }
 `;
-export const updatePost = /* GraphQL */ `
-  mutation UpdatePost(
-    $input: UpdatePostInput!
-    $condition: ModelPostConditionInput
+export const updateContract = /* GraphQL */ `
+  mutation UpdateContract(
+    $input: UpdateContractInput!
+    $condition: ModelContractConditionInput
   ) {
-    updatePost(input: $input, condition: $condition) {
+    updateContract(input: $input, condition: $condition) {
       id
       title
-      blog {
-        id
-        name
-        posts {
-          nextToken
-        }
-        createdAt
-        updatedAt
-      }
-      comments {
+      gatewayAPIId
+      isERCBurnable
+      isERCMintable
+      isERC721
+      isERC20
+      creator
+      contractName
+      tokens {
         items {
           id
           content
           createdAt
           updatedAt
-          postCommentsId
+          contractTokensId
         }
         nextToken
       }
       createdAt
       updatedAt
-      blogPostsId
     }
   }
 `;
-export const deletePost = /* GraphQL */ `
-  mutation DeletePost(
-    $input: DeletePostInput!
-    $condition: ModelPostConditionInput
+export const deleteContract = /* GraphQL */ `
+  mutation DeleteContract(
+    $input: DeleteContractInput!
+    $condition: ModelContractConditionInput
   ) {
-    deletePost(input: $input, condition: $condition) {
+    deleteContract(input: $input, condition: $condition) {
       id
       title
-      blog {
-        id
-        name
-        posts {
-          nextToken
-        }
-        createdAt
-        updatedAt
-      }
-      comments {
+      gatewayAPIId
+      isERCBurnable
+      isERCMintable
+      isERC721
+      isERC20
+      creator
+      contractName
+      tokens {
         items {
           id
           content
           createdAt
           updatedAt
-          postCommentsId
+          contractTokensId
         }
         nextToken
       }
       createdAt
       updatedAt
-      blogPostsId
     }
   }
 `;
-export const createComment = /* GraphQL */ `
-  mutation CreateComment(
-    $input: CreateCommentInput!
-    $condition: ModelCommentConditionInput
+export const createToken = /* GraphQL */ `
+  mutation CreateToken(
+    $input: CreateTokenInput!
+    $condition: ModelTokenConditionInput
   ) {
-    createComment(input: $input, condition: $condition) {
+    createToken(input: $input, condition: $condition) {
       id
-      post {
+      contract {
         id
         title
-        blog {
-          id
-          name
-          createdAt
-          updatedAt
-        }
-        comments {
+        gatewayAPIId
+        isERCBurnable
+        isERCMintable
+        isERC721
+        isERC20
+        creator
+        contractName
+        tokens {
           nextToken
         }
         createdAt
         updatedAt
-        blogPostsId
       }
       content
       createdAt
       updatedAt
-      postCommentsId
+      contractTokensId
     }
   }
 `;
-export const updateComment = /* GraphQL */ `
-  mutation UpdateComment(
-    $input: UpdateCommentInput!
-    $condition: ModelCommentConditionInput
+export const updateToken = /* GraphQL */ `
+  mutation UpdateToken(
+    $input: UpdateTokenInput!
+    $condition: ModelTokenConditionInput
   ) {
-    updateComment(input: $input, condition: $condition) {
+    updateToken(input: $input, condition: $condition) {
       id
-      post {
+      contract {
         id
         title
-        blog {
-          id
-          name
-          createdAt
-          updatedAt
-        }
-        comments {
+        gatewayAPIId
+        isERCBurnable
+        isERCMintable
+        isERC721
+        isERC20
+        creator
+        contractName
+        tokens {
           nextToken
         }
         createdAt
         updatedAt
-        blogPostsId
       }
       content
       createdAt
       updatedAt
-      postCommentsId
+      contractTokensId
     }
   }
 `;
-export const deleteComment = /* GraphQL */ `
-  mutation DeleteComment(
-    $input: DeleteCommentInput!
-    $condition: ModelCommentConditionInput
+export const deleteToken = /* GraphQL */ `
+  mutation DeleteToken(
+    $input: DeleteTokenInput!
+    $condition: ModelTokenConditionInput
   ) {
-    deleteComment(input: $input, condition: $condition) {
+    deleteToken(input: $input, condition: $condition) {
       id
-      post {
+      contract {
         id
         title
-        blog {
-          id
-          name
-          createdAt
-          updatedAt
-        }
-        comments {
+        gatewayAPIId
+        isERCBurnable
+        isERCMintable
+        isERC721
+        isERC20
+        creator
+        contractName
+        tokens {
           nextToken
         }
         createdAt
         updatedAt
-        blogPostsId
       }
       content
       createdAt
       updatedAt
-      postCommentsId
+      contractTokensId
     }
   }
 `;
