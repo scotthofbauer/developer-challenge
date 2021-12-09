@@ -18,10 +18,10 @@ export const getContract = /* GraphQL */ `
         items {
           id
           content
-          img
           createdAt
           updatedAt
           contractTokensId
+          tokenProductId
         }
         nextToken
       }
@@ -78,10 +78,29 @@ export const getToken = /* GraphQL */ `
         updatedAt
       }
       content
-      img
+      product {
+        id
+        token {
+          id
+          content
+          createdAt
+          updatedAt
+          contractTokensId
+          tokenProductId
+        }
+        img
+        name
+        brand
+        year
+        color
+        createdAt
+        updatedAt
+        productTokenId
+      }
       createdAt
       updatedAt
       contractTokensId
+      tokenProductId
     }
   }
 `;
@@ -108,10 +127,98 @@ export const listTokens = /* GraphQL */ `
           updatedAt
         }
         content
-        img
+        product {
+          id
+          img
+          name
+          brand
+          year
+          color
+          createdAt
+          updatedAt
+          productTokenId
+        }
         createdAt
         updatedAt
         contractTokensId
+        tokenProductId
+      }
+      nextToken
+    }
+  }
+`;
+export const getProduct = /* GraphQL */ `
+  query GetProduct($id: ID!) {
+    getProduct(id: $id) {
+      id
+      token {
+        id
+        contract {
+          id
+          title
+          gatewayAPIId
+          isERCBurnable
+          isERCMintable
+          isERC721
+          isERC20
+          creator
+          contractName
+          createdAt
+          updatedAt
+        }
+        content
+        product {
+          id
+          img
+          name
+          brand
+          year
+          color
+          createdAt
+          updatedAt
+          productTokenId
+        }
+        createdAt
+        updatedAt
+        contractTokensId
+        tokenProductId
+      }
+      img
+      name
+      brand
+      year
+      color
+      createdAt
+      updatedAt
+      productTokenId
+    }
+  }
+`;
+export const listProducts = /* GraphQL */ `
+  query ListProducts(
+    $filter: ModelProductFilterInput
+    $limit: Int
+    $nextToken: String
+  ) {
+    listProducts(filter: $filter, limit: $limit, nextToken: $nextToken) {
+      items {
+        id
+        token {
+          id
+          content
+          createdAt
+          updatedAt
+          contractTokensId
+          tokenProductId
+        }
+        img
+        name
+        brand
+        year
+        color
+        createdAt
+        updatedAt
+        productTokenId
       }
       nextToken
     }

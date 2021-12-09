@@ -15,7 +15,7 @@ const NFTCard: React.FC<NFTCardProps> = ({token}: NFTCardProps) => {
           component="img"
           alt="NFT Shoe Image"
           height="140"
-          image={token.img}
+          image={token?.product?.img}
         />
         <CardContent>
           <Typography gutterBottom variant="h5" component="div">

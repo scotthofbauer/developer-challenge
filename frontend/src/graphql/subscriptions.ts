@@ -18,10 +18,10 @@ export const onCreateContract = /* GraphQL */ `
         items {
           id
           content
-          img
           createdAt
           updatedAt
           contractTokensId
+          tokenProductId
         }
         nextToken
       }
@@ -46,10 +46,10 @@ export const onUpdateContract = /* GraphQL */ `
         items {
           id
           content
-          img
           createdAt
           updatedAt
           contractTokensId
+          tokenProductId
         }
         nextToken
       }
@@ -74,10 +74,10 @@ export const onDeleteContract = /* GraphQL */ `
         items {
           id
           content
-          img
           createdAt
           updatedAt
           contractTokensId
+          tokenProductId
         }
         nextToken
       }
@@ -107,10 +107,29 @@ export const onCreateToken = /* GraphQL */ `
         updatedAt
       }
       content
-      img
+      product {
+        id
+        token {
+          id
+          content
+          createdAt
+          updatedAt
+          contractTokensId
+          tokenProductId
+        }
+        img
+        name
+        brand
+        year
+        color
+        createdAt
+        updatedAt
+        productTokenId
+      }
       createdAt
       updatedAt
       contractTokensId
+      tokenProductId
     }
   }
 `;
@@ -135,10 +154,29 @@ export const onUpdateToken = /* GraphQL */ `
         updatedAt
       }
       content
-      img
+      product {
+        id
+        token {
+          id
+          content
+          createdAt
+          updatedAt
+          contractTokensId
+          tokenProductId
+        }
+        img
+        name
+        brand
+        year
+        color
+        createdAt
+        updatedAt
+        productTokenId
+      }
       createdAt
       updatedAt
       contractTokensId
+      tokenProductId
     }
   }
 `;
@@ -163,10 +201,170 @@ export const onDeleteToken = /* GraphQL */ `
         updatedAt
       }
       content
-      img
+      product {
+        id
+        token {
+          id
+          content
+          createdAt
+          updatedAt
+          contractTokensId
+          tokenProductId
+        }
+        img
+        name
+        brand
+        year
+        color
+        createdAt
+        updatedAt
+        productTokenId
+      }
       createdAt
       updatedAt
       contractTokensId
+      tokenProductId
+    }
+  }
+`;
+export const onCreateProduct = /* GraphQL */ `
+  subscription OnCreateProduct {
+    onCreateProduct {
+      id
+      token {
+        id
+        contract {
+          id
+          title
+          gatewayAPIId
+          isERCBurnable
+          isERCMintable
+          isERC721
+          isERC20
+          creator
+          contractName
+          createdAt
+          updatedAt
+        }
+        content
+        product {
+          id
+          img
+          name
+          brand
+          year
+          color
+          createdAt
+          updatedAt
+          productTokenId
+        }
+        createdAt
+        updatedAt
+        contractTokensId
+        tokenProductId
+      }
+      img
+      name
+      brand
+      year
+      color
+      createdAt
+      updatedAt
+      productTokenId
+    }
+  }
+`;
+export const onUpdateProduct = /* GraphQL */ `
+  subscription OnUpdateProduct {
+    onUpdateProduct {
+      id
+      token {
+        id
+        contract {
+          id
+          title
+          gatewayAPIId
+          isERCBurnable
+          isERCMintable
+          isERC721
+          isERC20
+          creator
+          contractName
+          createdAt
+          updatedAt
+        }
+        content
+        product {
+          id
+          img
+          name
+          brand
+          year
+          color
+          createdAt
+          updatedAt
+          productTokenId
+        }
+        createdAt
+        updatedAt
+        contractTokensId
+        tokenProductId
+      }
+      img
+      name
+      brand
+      year
+      color
+      createdAt
+      updatedAt
+      productTokenId
+    }
+  }
+`;
+export const onDeleteProduct = /* GraphQL */ `
+  subscription OnDeleteProduct {
+    onDeleteProduct {
+      id
+      token {
+        id
+        contract {
+          id
+          title
+          gatewayAPIId
+          isERCBurnable
+          isERCMintable
+          isERC721
+          isERC20
+          creator
+          contractName
+          createdAt
+          updatedAt
+        }
+        content
+        product {
+          id
+          img
+          name
+          brand
+          year
+          color
+          createdAt
+          updatedAt
+          productTokenId
+        }
+        createdAt
+        updatedAt
+        contractTokensId
+        tokenProductId
+      }
+      img
+      name
+      brand
+      year
+      color
+      createdAt
+      updatedAt
+      productTokenId
     }
   }
 `;

@@ -21,10 +21,10 @@ export const createContract = /* GraphQL */ `
         items {
           id
           content
-          img
           createdAt
           updatedAt
           contractTokensId
+          tokenProductId
         }
         nextToken
       }
@@ -52,10 +52,10 @@ export const updateContract = /* GraphQL */ `
         items {
           id
           content
-          img
           createdAt
           updatedAt
           contractTokensId
+          tokenProductId
         }
         nextToken
       }
@@ -83,10 +83,10 @@ export const deleteContract = /* GraphQL */ `
         items {
           id
           content
-          img
           createdAt
           updatedAt
           contractTokensId
+          tokenProductId
         }
         nextToken
       }
@@ -119,10 +119,29 @@ export const createToken = /* GraphQL */ `
         updatedAt
       }
       content
-      img
+      product {
+        id
+        token {
+          id
+          content
+          createdAt
+          updatedAt
+          contractTokensId
+          tokenProductId
+        }
+        img
+        name
+        brand
+        year
+        color
+        createdAt
+        updatedAt
+        productTokenId
+      }
       createdAt
       updatedAt
       contractTokensId
+      tokenProductId
     }
   }
 `;
@@ -150,10 +169,29 @@ export const updateToken = /* GraphQL */ `
         updatedAt
       }
       content
-      img
+      product {
+        id
+        token {
+          id
+          content
+          createdAt
+          updatedAt
+          contractTokensId
+          tokenProductId
+        }
+        img
+        name
+        brand
+        year
+        color
+        createdAt
+        updatedAt
+        productTokenId
+      }
       createdAt
       updatedAt
       contractTokensId
+      tokenProductId
     }
   }
 `;
@@ -181,10 +219,179 @@ export const deleteToken = /* GraphQL */ `
         updatedAt
       }
       content
-      img
+      product {
+        id
+        token {
+          id
+          content
+          createdAt
+          updatedAt
+          contractTokensId
+          tokenProductId
+        }
+        img
+        name
+        brand
+        year
+        color
+        createdAt
+        updatedAt
+        productTokenId
+      }
       createdAt
       updatedAt
       contractTokensId
+      tokenProductId
+    }
+  }
+`;
+export const createProduct = /* GraphQL */ `
+  mutation CreateProduct(
+    $input: CreateProductInput!
+    $condition: ModelProductConditionInput
+  ) {
+    createProduct(input: $input, condition: $condition) {
+      id
+      token {
+        id
+        contract {
+          id
+          title
+          gatewayAPIId
+          isERCBurnable
+          isERCMintable
+          isERC721
+          isERC20
+          creator
+          contractName
+          createdAt
+          updatedAt
+        }
+        content
+        product {
+          id
+          img
+          name
+          brand
+          year
+          color
+          createdAt
+          updatedAt
+          productTokenId
+        }
+        createdAt
+        updatedAt
+        contractTokensId
+        tokenProductId
+      }
+      img
+      name
+      brand
+      year
+      color
+      createdAt
+      updatedAt
+      productTokenId
+    }
+  }
+`;
+export const updateProduct = /* GraphQL */ `
+  mutation UpdateProduct(
+    $input: UpdateProductInput!
+    $condition: ModelProductConditionInput
+  ) {
+    updateProduct(input: $input, condition: $condition) {
+      id
+      token {
+        id
+        contract {
+          id
+          title
+          gatewayAPIId
+          isERCBurnable
+          isERCMintable
+          isERC721
+          isERC20
+          creator
+          contractName
+          createdAt
+          updatedAt
+        }
+        content
+        product {
+          id
+          img
+          name
+          brand
+          year
+          color
+          createdAt
+          updatedAt
+          productTokenId
+        }
+        createdAt
+        updatedAt
+        contractTokensId
+        tokenProductId
+      }
+      img
+      name
+      brand
+      year
+      color
+      createdAt
+      updatedAt
+      productTokenId
+    }
+  }
+`;
+export const deleteProduct = /* GraphQL */ `
+  mutation DeleteProduct(
+    $input: DeleteProductInput!
+    $condition: ModelProductConditionInput
+  ) {
+    deleteProduct(input: $input, condition: $condition) {
+      id
+      token {
+        id
+        contract {
+          id
+          title
+          gatewayAPIId
+          isERCBurnable
+          isERCMintable
+          isERC721
+          isERC20
+          creator
+          contractName
+          createdAt
+          updatedAt
+        }
+        content
+        product {
+          id
+          img
+          name
+          brand
+          year
+          color
+          createdAt
+          updatedAt
+          productTokenId
+        }
+        createdAt
+        updatedAt
+        contractTokensId
+        tokenProductId
+      }
+      img
+      name
+      brand
+      year
+      color
+      createdAt
+      updatedAt
+      productTokenId
     }
   }
 `;

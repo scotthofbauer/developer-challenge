@@ -45,7 +45,7 @@ const MarketPlace = () => {
                 <div className={classes.root}>
                     <Header address={"test"} />
                     <Grid container spacing={4}>
-                        <Grid item xs={1}>s</Grid>
+                        <Grid item xs={1}></Grid>
                         {data.map((token) => (                              
                             <Grid item xs={12} sm={4}>
                                 <NFTCard key={token.id} token={token}/>

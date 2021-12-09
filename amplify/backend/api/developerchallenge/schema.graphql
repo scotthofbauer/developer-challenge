@@ -20,5 +20,15 @@ type Token @model {
   id: ID!
   contract: Contract @belongsTo
   content: String!
+  product: Product @hasOne
+}
+
+type Product @model {
+  id: ID!
+  token: Token @belongsTo
   img: String!
+  name: String!
+  brand: String!
+  year: String!
+  color: String!
 }
