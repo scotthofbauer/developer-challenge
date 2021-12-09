@@ -19,7 +19,7 @@ type Contract @model {
 type Token @model {
   id: ID!
   contract: Contract @belongsTo
-  content: String!
+  owner: String!
   product: Product @hasOne
 }
 
@@ -31,4 +31,5 @@ type Product @model {
   brand: String!
   year: String!
   color: String!
+  minted: Boolean!
 }

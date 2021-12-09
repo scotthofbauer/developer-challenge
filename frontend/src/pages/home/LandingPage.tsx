@@ -1,7 +1,7 @@
 import React from 'react'
 import { Button} from '@mui/material';
 import { makeStyles } from '@mui/styles';
-import { mintToken } from '../../api/Api';
+import { mintToken, getRandomProductID } from '../../api/Api';
 // import { API } from 'aws-amplify';
 // import * as queries from '../../graphql/queries';
 export interface LandingPageProps {

@@ -17,7 +17,7 @@ export const getContract = /* GraphQL */ `
       tokens {
         items {
           id
-          content
+          owner
           createdAt
           updatedAt
           contractTokensId
@@ -77,12 +77,12 @@ export const getToken = /* GraphQL */ `
         createdAt
         updatedAt
       }
-      content
+      owner
       product {
         id
         token {
           id
-          content
+          owner
           createdAt
           updatedAt
           contractTokensId
@@ -93,6 +93,7 @@ export const getToken = /* GraphQL */ `
         brand
         year
         color
+        minted
         createdAt
         updatedAt
         productTokenId
@@ -126,7 +127,7 @@ export const listTokens = /* GraphQL */ `
           createdAt
           updatedAt
         }
-        content
+        owner
         product {
           id
           img
@@ -134,6 +135,7 @@ export const listTokens = /* GraphQL */ `
           brand
           year
           color
+          minted
           createdAt
           updatedAt
           productTokenId
@@ -166,7 +168,7 @@ export const getProduct = /* GraphQL */ `
           createdAt
           updatedAt
         }
-        content
+        owner
         product {
           id
           img
@@ -174,6 +176,7 @@ export const getProduct = /* GraphQL */ `
           brand
           year
           color
+          minted
           createdAt
           updatedAt
           productTokenId
@@ -188,6 +191,7 @@ export const getProduct = /* GraphQL */ `
       brand
       year
       color
+      minted
       createdAt
       updatedAt
       productTokenId
@@ -205,7 +209,7 @@ export const listProducts = /* GraphQL */ `
         id
         token {
           id
-          content
+          owner
           createdAt
           updatedAt
           contractTokensId
@@ -216,6 +220,7 @@ export const listProducts = /* GraphQL */ `
         brand
         year
         color
+        minted
         createdAt
         updatedAt
         productTokenId
