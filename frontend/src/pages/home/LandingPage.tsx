@@ -2,7 +2,7 @@ import React from 'react'
 import { Button} from '@mui/material';
 import { makeStyles } from '@mui/styles';
 import { mintToken } from '../../api/Api';
-import { API } from 'aws-amplify';
+// import { API } from 'aws-amplify';
 // import * as queries from '../../graphql/queries';
 export interface LandingPageProps {
     address: string | null;
@@ -38,16 +38,11 @@ const LandingPage: React.FC<LandingPageProps> = ({address}: LandingPageProps) =>
     const classes = useStyles();
 
     const handleClick = async () => {
-        // if(address){
-        //     const tokenResult = await mintToken(address);
-        //     console.log('tokenResult: ', tokenResult);
-        // }
-        // const contracts = await API.graphql({ query: queries.})
-
+        if(address){
+            const tokenResult = await mintToken(address);
+            console.log('tokenResult: ', tokenResult);
+        }
     }
-
-
-
 
     return (
         <div className={classes.root}>

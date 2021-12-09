@@ -10,6 +10,12 @@
       "StackName": "amplify-developerchallenge-dev-212305",
       "StackId": "arn:aws:cloudformation:us-east-2:338110194833:stack/amplify-developerchallenge-dev-212305/c93700a0-57cd-11ec-b02a-06188240028e",
       "AmplifyAppId": "dzchsmcrxvuvy"
+    },
+    "categories": {
+      "auth": {
+        "developerchallenge51986182": {},
+        "true": {}
+      }
     }
   }
 }

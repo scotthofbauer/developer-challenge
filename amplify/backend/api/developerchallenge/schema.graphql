@@ -20,4 +20,5 @@ type Token @model {
   id: ID!
   contract: Contract @belongsTo
   content: String!
+  img: String!
 }

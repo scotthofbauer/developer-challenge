@@ -21,6 +21,7 @@ export const createContract = /* GraphQL */ `
         items {
           id
           content
+          img
           createdAt
           updatedAt
           contractTokensId
@@ -51,6 +52,7 @@ export const updateContract = /* GraphQL */ `
         items {
           id
           content
+          img
           createdAt
           updatedAt
           contractTokensId
@@ -81,6 +83,7 @@ export const deleteContract = /* GraphQL */ `
         items {
           id
           content
+          img
           createdAt
           updatedAt
           contractTokensId
@@ -116,6 +119,7 @@ export const createToken = /* GraphQL */ `
         updatedAt
       }
       content
+      img
       createdAt
       updatedAt
       contractTokensId
@@ -146,6 +150,7 @@ export const updateToken = /* GraphQL */ `
         updatedAt
       }
       content
+      img
       createdAt
       updatedAt
       contractTokensId
@@ -176,6 +181,7 @@ export const deleteToken = /* GraphQL */ `
         updatedAt
       }
       content
+      img
       createdAt
       updatedAt
       contractTokensId

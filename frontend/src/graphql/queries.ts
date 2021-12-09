@@ -18,6 +18,7 @@ export const getContract = /* GraphQL */ `
         items {
           id
           content
+          img
           createdAt
           updatedAt
           contractTokensId
@@ -77,6 +78,7 @@ export const getToken = /* GraphQL */ `
         updatedAt
       }
       content
+      img
       createdAt
       updatedAt
       contractTokensId
@@ -106,6 +108,7 @@ export const listTokens = /* GraphQL */ `
           updatedAt
         }
         content
+        img
         createdAt
         updatedAt
         contractTokensId
