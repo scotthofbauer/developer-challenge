@@ -20,7 +20,6 @@ export const createContract = /* GraphQL */ `
       tokens {
         items {
           id
-          owner
           createdAt
           updatedAt
           contractTokensId
@@ -51,7 +50,6 @@ export const updateContract = /* GraphQL */ `
       tokens {
         items {
           id
-          owner
           createdAt
           updatedAt
           contractTokensId
@@ -82,7 +80,6 @@ export const deleteContract = /* GraphQL */ `
       tokens {
         items {
           id
-          owner
           createdAt
           updatedAt
           contractTokensId
@@ -118,12 +115,11 @@ export const createToken = /* GraphQL */ `
         createdAt
         updatedAt
       }
-      owner
       product {
         id
+        owner
         token {
           id
-          owner
           createdAt
           updatedAt
           contractTokensId
@@ -133,8 +129,8 @@ export const createToken = /* GraphQL */ `
         name
         brand
         year
-        color
         minted
+        redeemed
         createdAt
         updatedAt
         productTokenId
@@ -169,12 +165,11 @@ export const updateToken = /* GraphQL */ `
         createdAt
         updatedAt
       }
-      owner
       product {
         id
+        owner
         token {
           id
-          owner
           createdAt
           updatedAt
           contractTokensId
@@ -184,8 +179,8 @@ export const updateToken = /* GraphQL */ `
         name
         brand
         year
-        color
         minted
+        redeemed
         createdAt
         updatedAt
         productTokenId
@@ -220,12 +215,11 @@ export const deleteToken = /* GraphQL */ `
         createdAt
         updatedAt
       }
-      owner
       product {
         id
+        owner
         token {
           id
-          owner
           createdAt
           updatedAt
           contractTokensId
@@ -235,8 +229,8 @@ export const deleteToken = /* GraphQL */ `
         name
         brand
         year
-        color
         minted
+        redeemed
         createdAt
         updatedAt
         productTokenId
@@ -255,6 +249,7 @@ export const createProduct = /* GraphQL */ `
   ) {
     createProduct(input: $input, condition: $condition) {
       id
+      owner
       token {
         id
         contract {
@@ -270,15 +265,15 @@ export const createProduct = /* GraphQL */ `
           createdAt
           updatedAt
         }
-        owner
         product {
           id
+          owner
           img
           name
           brand
           year
-          color
           minted
+          redeemed
           createdAt
           updatedAt
           productTokenId
@@ -292,8 +287,8 @@ export const createProduct = /* GraphQL */ `
       name
       brand
       year
-      color
       minted
+      redeemed
       createdAt
       updatedAt
       productTokenId
@@ -307,6 +302,7 @@ export const updateProduct = /* GraphQL */ `
   ) {
     updateProduct(input: $input, condition: $condition) {
       id
+      owner
       token {
         id
         contract {
@@ -322,15 +318,15 @@ export const updateProduct = /* GraphQL */ `
           createdAt
           updatedAt
         }
-        owner
         product {
           id
+          owner
           img
           name
           brand
           year
-          color
           minted
+          redeemed
           createdAt
           updatedAt
           productTokenId
@@ -344,8 +340,8 @@ export const updateProduct = /* GraphQL */ `
       name
       brand
       year
-      color
       minted
+      redeemed
       createdAt
       updatedAt
       productTokenId
@@ -359,6 +355,7 @@ export const deleteProduct = /* GraphQL */ `
   ) {
     deleteProduct(input: $input, condition: $condition) {
       id
+      owner
       token {
         id
         contract {
@@ -374,15 +371,15 @@ export const deleteProduct = /* GraphQL */ `
           createdAt
           updatedAt
         }
-        owner
         product {
           id
+          owner
           img
           name
           brand
           year
-          color
           minted
+          redeemed
           createdAt
           updatedAt
           productTokenId
@@ -396,8 +393,8 @@ export const deleteProduct = /* GraphQL */ `
       name
       brand
       year
-      color
       minted
+      redeemed
       createdAt
       updatedAt
       productTokenId

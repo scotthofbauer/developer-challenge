@@ -3,8 +3,9 @@ import { graphqlOperation } from 'aws-amplify';
 import axios from 'axios';
 import * as mutations from '../graphql/mutations';
 import * as queries from '../graphql/queries';
+// import config from '../config.json';
 import config from '../config.json';
-import { Product, UpdateProductInput } from '../API';
+import { DeleteTokenInput, Product, Token, UpdateProductInput } from '../API';
 
 const contractUrl = "https://u0rymjyyct-u0fj2prbvx-connect.us0-aws.kaleido.io/instances/0xecfccb323d855a803e374962aa203a12934b7c7b"
 const contractInstance = axios.create({
@@ -57,7 +58,6 @@ export const mintToken = async (address: string) => {
                 //Insert New Token to GraphQL
                 const newTokenDetails = {
                     id: newTokenId.toString(),
-                    owner: `${address}`,
                     contractTokensId: `${config.CONTRACT_ADDRESS}`,
                     tokenProductId: productId.toString(),
                 };
@@ -68,7 +68,8 @@ export const mintToken = async (address: string) => {
                 const updateProductDetails: UpdateProductInput = {
                     id: productId.toString(),
                     productTokenId: newTokenId.toString(),
-                    minted: true
+                    minted: true,
+                    owner: `${address}`,
                 }
                 console.log("updateProductDetails", updateProductDetails);
                 const updateProductDetailsResult = (await API.graphql(graphqlOperation(mutations.updateProduct, {input: updateProductDetails})) as any);
@@ -87,7 +88,11 @@ export const getRandomProductID = async () => {
         let filter = {
             minted: {
                 eq: false
+            },
+            redeemed: {
+                eq: false
             }
+
         };
         const availableProducts = (await API.graphql(graphqlOperation(queries.listProducts, {filter: filter})) as any);
         const items = availableProducts.data.listProducts.items;
@@ -101,7 +106,63 @@ export const getRandomProductID = async () => {
         console.log(ids);
         return selectedId
     }catch(error: any) {
-        console.log("error getting avaliable products");
+        console.log("error getting avaliable products: ", error);
+    }
+}
+
+export const burnToken = async (address: string, walletID: string, token: Token) => {
+    try {
+        //checks to make sure the address trying to burn a token owns the token
+        const checkOwnerResult = await getOwner(token);
+        if(checkOwnerResult === address && token.product){
+            console.log("kld-from: ", `HD-${config.HD_WALLET_RUNTIME}-${walletID}-1`);
+            const res = await contractInstance.post('/burn', 
+            {
+                'tokenId': `${token.id}`
+            },
+            {
+                // HD-runtimeID-walletID-index
+                params: {
+                    'kld-from': `HD-${config.HD_WALLET_RUNTIME}-${walletID}-1`,
+                    'kld-sync': true
+                },
+            });
+            if(res.data.headers.type === 'TransactionSuccess' ) {
+                //Update Product to link to new Token
+                const updateProductDetails: UpdateProductInput = {
+                    id: token.product.id.toString(),
+                    productTokenId: "",
+                    minted: true,
+                    owner: "",
+                    redeemed: true
+                }
+                const deleteTokenDetails: DeleteTokenInput ={
+                    id: token.id
+                }
+                console.log("updateProductDetails", updateProductDetails);
+                (await API.graphql(graphqlOperation(mutations.updateProduct, {input: updateProductDetails})) as any);
+                (await API.graphql(graphqlOperation(mutations.deleteToken, {input: deleteTokenDetails})) as any);
+            }
+        }
+    } catch (error: any) {
+        console.log("error burnign token")
+    }
+}
+
+export const getOwner = async (token: Token) => {
+    try {
+        const res = await contractInstance.get('/ownerOf', 
+        {
+            params: {
+                'tokenId': `${token.id}`,
+                'kld-from': `${config.MINTER_ADDRESS}`,
+            },
+
+        });
+        return res.data.output;
+
+    } catch (error: any) {
+        console.log("error checking owner of token: ", error);
     }
 }
 

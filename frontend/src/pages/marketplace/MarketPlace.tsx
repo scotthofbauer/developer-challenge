@@ -1,4 +1,4 @@
-import { Grid } from '@mui/material';
+import { Box, Grid, Modal, Typography } from '@mui/material';
 import { makeStyles } from '@mui/styles';
 import React, { useEffect, useState } from 'react';
 import Header from '../../shared/Header';
@@ -6,9 +6,14 @@ import NFTCard from './NFTCard';
 import { API, graphqlOperation } from 'aws-amplify'
 import * as queries from '../../graphql/queries';
 import { Token } from '../../API';
+import NFTModal from './NFTModal';
 
 
-const useStyles = makeStyles((theme) => ({
+interface MarketPlaceProps {
+    address: string | null
+}
+
+const useStyles = makeStyles(() => ({
     root: {
       minHeight: '100vh',
       backgroundColor: '#000000',
@@ -16,14 +21,21 @@ const useStyles = makeStyles((theme) => ({
     },
     hr: {
       width: '75%'
-    } 
+    },
+    grid: {
+        padding: '10px'
+    }
   }));
 
 
 
-const MarketPlace = () => {
+const MarketPlace: React.FC<MarketPlaceProps> = ({address}) => {
     const classes = useStyles();
     const [data, setData] = useState<Array<Token>>([]);
+    const [open, setOpen] = useState<boolean>(false);
+    const [selectedNFT, setSelectedNFT] = useState<Token>();
+    const [sell, setSell] = useState<boolean>(false);
+
 
     useEffect(() => {
         getTokenData();
@@ -37,24 +49,35 @@ const MarketPlace = () => {
             console.log('error fetching tokens');
         }
     }
+    const handleModal = () => setOpen(!open);
 
-    console.log('data: ', data);
+    console.log("open: ", open);
     return (
-        <div > 
-            {data.length > 0 ? (
+             <div > 
+                {data.length > 0 ? (
+                    <div className={classes.root}>
+                        <Header address={address} />
+                        <Grid container spacing={4} className={classes.grid}>
+                            {data.map((token) => (                              
+                                <Grid key={token.id} item xs={12} sm={4}>
+                                    <NFTCard key={token.id} token={token} handleModal={handleModal} setSelectedNFT={setSelectedNFT} setSell={setSell} />
+                                </Grid>
+                            ))}  
+                        </Grid>
+                        {open ? <NFTModal 
+                                    open={open}
+                                    handleModal={handleModal} 
+                                    token={selectedNFT} 
+                                    sell={sell}
+                                    address={address}
+                                /> : null}
+            </div>
+            ) : (
                 <div className={classes.root}>
                     <Header address={"test"} />
-                    <Grid container spacing={4}>
-                        <Grid item xs={1}></Grid>
-                        {data.map((token) => (                              
-                            <Grid item xs={12} sm={4}>
-                                <NFTCard key={token.id} token={token}/>
-                            </Grid>
-                        ))}  
-                        <Grid item xs={1}></Grid>
-                    </Grid>
+                    <h1>No NFTs have been minted</h1>
                 </div>
-            ) : null
+            )
             }
             
         </div>

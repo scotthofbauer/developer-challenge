@@ -6,6 +6,11 @@ import Footer from '../../shared/Footer';
 import Header from '../../shared/Header';
 import LandingPage from './LandingPage';
 
+interface HomeProps {
+  address: string | null
+}
+
+
 const useStyles = makeStyles((theme) => ({
     root: {
       minHeight: '100vh',
@@ -19,29 +24,15 @@ const useStyles = makeStyles((theme) => ({
 
 
 
-const Home = () => {
+const Home: React.FC<HomeProps> = ({address}) => {
   const classes = useStyles();
-  const [defaultAccount, setDefaultAccount] = useState(null);
-  useEffect(() => {
-      if(window.ethereum) {
-          window.ethereum.request({method: 'eth_requestAccounts'}).then((result:any) => {
-            accountChangedHandler(result[0])
-
-        })
-      }else {
-          window.alert('Non-Ethereum browser detected. You should consider trying MetaMask!')
-      }
-  }, []) 
-
-    const accountChangedHandler = (newAccount:any) => {
-        setDefaultAccount(newAccount);
-    }
+  
 
   return(
       <div className={classes.root}>
-        <Header address={defaultAccount} />
+        <Header address={address} />
         <Grid container>
-          <Grid item xs={12}> <LandingPage address={defaultAccount}/> </Grid>
+          <Grid item xs={12}> <LandingPage address={address}/> </Grid>
           <Grid item xs={12}> 
             <hr className={classes.hr} />
           </Grid>

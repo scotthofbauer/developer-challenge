@@ -19,17 +19,17 @@ type Contract @model {
 type Token @model {
   id: ID!
   contract: Contract @belongsTo
-  owner: String!
   product: Product @hasOne
 }
 
 type Product @model {
   id: ID!
+  owner: String
   token: Token @belongsTo
   img: String!
   name: String!
   brand: String!
   year: String!
-  color: String!
   minted: Boolean!
+  redeemed: Boolean!
 }

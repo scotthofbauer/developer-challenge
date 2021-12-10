@@ -17,7 +17,6 @@ export const getContract = /* GraphQL */ `
       tokens {
         items {
           id
-          owner
           createdAt
           updatedAt
           contractTokensId
@@ -77,12 +76,11 @@ export const getToken = /* GraphQL */ `
         createdAt
         updatedAt
       }
-      owner
       product {
         id
+        owner
         token {
           id
-          owner
           createdAt
           updatedAt
           contractTokensId
@@ -92,8 +90,8 @@ export const getToken = /* GraphQL */ `
         name
         brand
         year
-        color
         minted
+        redeemed
         createdAt
         updatedAt
         productTokenId
@@ -127,15 +125,15 @@ export const listTokens = /* GraphQL */ `
           createdAt
           updatedAt
         }
-        owner
         product {
           id
+          owner
           img
           name
           brand
           year
-          color
           minted
+          redeemed
           createdAt
           updatedAt
           productTokenId
@@ -153,6 +151,7 @@ export const getProduct = /* GraphQL */ `
   query GetProduct($id: ID!) {
     getProduct(id: $id) {
       id
+      owner
       token {
         id
         contract {
@@ -168,15 +167,15 @@ export const getProduct = /* GraphQL */ `
           createdAt
           updatedAt
         }
-        owner
         product {
           id
+          owner
           img
           name
           brand
           year
-          color
           minted
+          redeemed
           createdAt
           updatedAt
           productTokenId
@@ -190,8 +189,8 @@ export const getProduct = /* GraphQL */ `
       name
       brand
       year
-      color
       minted
+      redeemed
       createdAt
       updatedAt
       productTokenId
@@ -207,9 +206,9 @@ export const listProducts = /* GraphQL */ `
     listProducts(filter: $filter, limit: $limit, nextToken: $nextToken) {
       items {
         id
+        owner
         token {
           id
-          owner
           createdAt
           updatedAt
           contractTokensId
@@ -219,8 +218,8 @@ export const listProducts = /* GraphQL */ `
         name
         brand
         year
-        color
         minted
+        redeemed
         createdAt
         updatedAt
         productTokenId
