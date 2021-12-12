@@ -74,7 +74,9 @@ export const mintToken = async (address: string) => {
                 console.log("updateProductDetails", updateProductDetails);
                 const updateProductDetailsResult = (await API.graphql(graphqlOperation(mutations.updateProduct, {input: updateProductDetails})) as any);
                 console.log("updatedProductResult: ", updateProductDetailsResult)
+                return res.data;
             }
+
 
         }
         return "it worked"
@@ -142,10 +144,47 @@ export const burnToken = async (address: string, walletID: string, token: Token)
                 console.log("updateProductDetails", updateProductDetails);
                 (await API.graphql(graphqlOperation(mutations.updateProduct, {input: updateProductDetails})) as any);
                 (await API.graphql(graphqlOperation(mutations.deleteToken, {input: deleteTokenDetails})) as any);
+                return res.data
             }
         }
     } catch (error: any) {
-        console.log("error burnign token")
+        console.log("error burning token")
+    }
+}
+
+export const transferToken = async (addressFrom: string, addressTo: string, walletID: string, token: Token) => {
+    try {
+        //checks to make sure the address trying to burn a token owns the token
+        const checkOwnerResult = await getOwner(token);
+        if(checkOwnerResult === addressFrom && token.product){
+            console.log("kld-from: ", `HD-${config.HD_WALLET_RUNTIME}-${walletID}-1`);
+            const res = await contractInstance.post('/transferFrom', 
+            {
+                from: `${addressFrom}`,
+                to: `${addressTo}`,
+                tokenId: `${token.id}`        
+            },
+            {
+                // HD-runtimeID-walletID-index
+                params: {
+                    'kld-from': `HD-${config.HD_WALLET_RUNTIME}-${walletID}-1`,
+                    'kld-sync': true
+                },
+            });
+            if(res.data.headers.type === 'TransactionSuccess' ) {
+                //Update Product to link to new Token
+                const updateProductDetails: UpdateProductInput = {
+                    id: token.product.id.toString(),
+                    owner: addressTo
+                }
+
+                console.log("updateProductDetails", updateProductDetails);
+                (await API.graphql(graphqlOperation(mutations.updateProduct, {input: updateProductDetails})) as any);
+                return res.data;
+            }
+        }
+    } catch (error: any) {
+        console.log("error transferring tokens")
     }
 }
 

@@ -17,6 +17,7 @@ export const onCreateContract = /* GraphQL */ `
       tokens {
         items {
           id
+          price
           createdAt
           updatedAt
           contractTokensId
@@ -44,6 +45,7 @@ export const onUpdateContract = /* GraphQL */ `
       tokens {
         items {
           id
+          price
           createdAt
           updatedAt
           contractTokensId
@@ -71,6 +73,7 @@ export const onDeleteContract = /* GraphQL */ `
       tokens {
         items {
           id
+          price
           createdAt
           updatedAt
           contractTokensId
@@ -108,6 +111,7 @@ export const onCreateToken = /* GraphQL */ `
         owner
         token {
           id
+          price
           createdAt
           updatedAt
           contractTokensId
@@ -123,6 +127,7 @@ export const onCreateToken = /* GraphQL */ `
         updatedAt
         productTokenId
       }
+      price
       createdAt
       updatedAt
       contractTokensId
@@ -155,6 +160,7 @@ export const onUpdateToken = /* GraphQL */ `
         owner
         token {
           id
+          price
           createdAt
           updatedAt
           contractTokensId
@@ -170,6 +176,7 @@ export const onUpdateToken = /* GraphQL */ `
         updatedAt
         productTokenId
       }
+      price
       createdAt
       updatedAt
       contractTokensId
@@ -202,6 +209,7 @@ export const onDeleteToken = /* GraphQL */ `
         owner
         token {
           id
+          price
           createdAt
           updatedAt
           contractTokensId
@@ -217,6 +225,7 @@ export const onDeleteToken = /* GraphQL */ `
         updatedAt
         productTokenId
       }
+      price
       createdAt
       updatedAt
       contractTokensId
@@ -257,6 +266,7 @@ export const onCreateProduct = /* GraphQL */ `
           updatedAt
           productTokenId
         }
+        price
         createdAt
         updatedAt
         contractTokensId
@@ -307,6 +317,7 @@ export const onUpdateProduct = /* GraphQL */ `
           updatedAt
           productTokenId
         }
+        price
         createdAt
         updatedAt
         contractTokensId
@@ -357,6 +368,7 @@ export const onDeleteProduct = /* GraphQL */ `
           updatedAt
           productTokenId
         }
+        price
         createdAt
         updatedAt
         contractTokensId

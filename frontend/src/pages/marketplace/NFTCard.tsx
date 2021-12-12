@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 // import { makeStyles } from '@mui/styles';
 import { Button, Card, CardActions, CardContent, Typography, CardMedia } from '@mui/material';
 import { Token } from '../../API';
@@ -54,9 +54,9 @@ const NFTCard: React.FC<NFTCardProps> = ({token, handleModal, setSelectedNFT, se
             <Typography gutterBottom variant="h6" color="text.secondary">
               Year: {token?.product?.year}
             </Typography>
-            <Typography gutterBottom variant="h6" color="text.secondary">
+            {/* <Typography gutterBottom variant="h6" color="text.secondary">
               Id: {token.id}
-            </Typography>
+            </Typography> */}
             <Typography gutterBottom variant="body2" color="text.secondary">
              Owner: {token?.product?.owner}
             </Typography>

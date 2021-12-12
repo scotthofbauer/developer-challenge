@@ -1,8 +1,14 @@
 import React, { useState } from 'react'
-import { Button, LinearProgress} from '@mui/material';
+import { Button, CircularProgress, LinearProgress} from '@mui/material';
 import { makeStyles } from '@mui/styles';
-import { mintToken, getRandomProductID } from '../../api/Api';
+import { mintToken,
+        // getRandomProductID, 
+        // getOwner, 
+        // getTotalSupply
+        } 
+from '../../api/Api';
 import { Box } from '@mui/system';
+import AlertSnackBar from '../../shared/AlertSnackBar';
 // import { API } from 'aws-amplify';
 // import * as queries from '../../graphql/queries';
 export interface LandingPageProps {
@@ -11,7 +17,9 @@ export interface LandingPageProps {
 
 
 const LandingPage: React.FC<LandingPageProps> = ({address}: LandingPageProps) => {
-    const [loading, setLoading] = useState<boolean>(false);
+    const [isLoading, setIsLoading] = useState<boolean>(false);
+    const [snackBar, setSnackBar] = useState<boolean>(false);
+    const [success, setSuccess] = useState<boolean>(false);
 
     const useStyles = makeStyles(() => ({
         root: {
@@ -24,6 +32,9 @@ const LandingPage: React.FC<LandingPageProps> = ({address}: LandingPageProps) =>
         container: {
             diplsay: 'flex',
             alignItems: 'center',
+        },
+        wrapper: {
+            position: "relative"
         },
         text: {
             fontSize: '2rem',
@@ -42,31 +53,40 @@ const LandingPage: React.FC<LandingPageProps> = ({address}: LandingPageProps) =>
     }));
     
 
+
     const classes = useStyles();
 
-    // function myFunction() {
-    //     setTimeout(function(){ console.log("Token Minted"); }, 3000);
-    // }
-
     const handleClick = async () => {
-        if(address){
-            // setLoading(true);
-            const tokenResult = await mintToken(address);
-            console.log("tokenResult")
-            // myFunction()
-            console.log("finished minting");
-            // setLoading(false);
+        if(address) {
 
+            let result;
+            try{
+                setIsLoading(true);
+                result = await mintToken(address);
+                // result = await getTotalSupply("0xb8c4717638b27b0c85f0f2996187c1079d655622");
+                console.log("result: ", result);
+
+            }catch(error) {
+                console.log("error minting token: ", error);
+            }finally {
+                if(result && result.headers.type === 'TransactionSuccess'){
+                // if(false){
+                    setSuccess(true);
+                }else {
+                    setSuccess(false);
+                }
+                setSnackBar(true);
+                setIsLoading(false);
+            }
         }
     }
-    const toggleLoading = () => {
-        console.log("toggleLoading called")
-        setLoading(!loading);
-    }
-    console.log("loading: ", loading)
+
+    const closeSnackBar = () => setSnackBar(false);
+    
+    console.log("loading: ", isLoading)
     return (
         <div>
-            {loading && (
+            {isLoading && (
                 <Box sx={{ width: '100%' }}>
                         <LinearProgress
                         classes={{
@@ -77,22 +97,36 @@ const LandingPage: React.FC<LandingPageProps> = ({address}: LandingPageProps) =>
                     </Box>
                 )
             }
+            {snackBar && (
+                <AlertSnackBar 
+                    closeSnackBar={closeSnackBar} 
+                    success={success} 
+                    message={success ? "NFT successfully Minted" : "Error minting NFT"}
+                />
+            )
+            }
+
             <div className={classes.root}>
                 <div className={classes.container}>
                     <h1 className={classes.text}> Welcome to Hoff Industries NFTs</h1>
-                    <Button
-                    variant='contained'
-                    color='error'
-                    onClick={async () => {
-                        toggleLoading()
-                        await handleClick()
-                        toggleLoading()
-                    }}
-                    disabled={address ? false : true}
-                >
-                    {address? "Mint" : "Connect"}
-
-                </Button>
+                        <div className={classes.wrapper}>
+                            <Button
+                                variant='contained'
+                                color='error'
+                                onClick={async () => {
+                                    // toggleLoading(true);
+                                    await handleClick();
+                                    // toggleLoading(false);
+                                    
+                                }}
+                                disabled={isLoading}
+                            >
+                            {address? "Mint" : "Connect"}
+                            </Button>
+                            {isLoading && (
+                                <CircularProgress />
+                            )}                    
+                        </div>
                 </div>
             </div>
         </div>

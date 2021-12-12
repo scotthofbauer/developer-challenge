@@ -20,6 +20,7 @@ type Token @model {
   id: ID!
   contract: Contract @belongsTo
   product: Product @hasOne
+  price: Float
 }
 
 type Product @model {

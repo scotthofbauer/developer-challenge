@@ -102,6 +102,7 @@ export type Token = {
   id: string,
   contract?: Contract | null,
   product?: Product | null,
+  price?: number | null,
   createdAt: string,
   updatedAt: string,
   contractTokensId?: string | null,
@@ -142,16 +143,30 @@ export type DeleteContractInput = {
 
 export type CreateTokenInput = {
   id?: string | null,
+  price?: number | null,
   contractTokensId?: string | null,
   tokenProductId?: string | null,
 };
 
 export type ModelTokenConditionInput = {
+  price?: ModelFloatInput | null,
   and?: Array< ModelTokenConditionInput | null > | null,
   or?: Array< ModelTokenConditionInput | null > | null,
   not?: ModelTokenConditionInput | null,
   contractTokensId?: ModelIDInput | null,
   tokenProductId?: ModelIDInput | null,
+};
+
+export type ModelFloatInput = {
+  ne?: number | null,
+  eq?: number | null,
+  le?: number | null,
+  lt?: number | null,
+  ge?: number | null,
+  gt?: number | null,
+  between?: Array< number | null > | null,
+  attributeExists?: boolean | null,
+  attributeType?: ModelAttributeTypes | null,
 };
 
 export type ModelIDInput = {
@@ -172,6 +187,7 @@ export type ModelIDInput = {
 
 export type UpdateTokenInput = {
   id: string,
+  price?: number | null,
   contractTokensId?: string | null,
   tokenProductId?: string | null,
 };
@@ -245,6 +261,7 @@ export type ModelContractConnection = {
 
 export type ModelTokenFilterInput = {
   id?: ModelIDInput | null,
+  price?: ModelFloatInput | null,
   and?: Array< ModelTokenFilterInput | null > | null,
   or?: Array< ModelTokenFilterInput | null > | null,
   not?: ModelTokenFilterInput | null,
@@ -295,6 +312,7 @@ export type CreateContractMutation = {
       items:  Array< {
         __typename: "Token",
         id: string,
+        price?: number | null,
         createdAt: string,
         updatedAt: string,
         contractTokensId?: string | null,
@@ -329,6 +347,7 @@ export type UpdateContractMutation = {
       items:  Array< {
         __typename: "Token",
         id: string,
+        price?: number | null,
         createdAt: string,
         updatedAt: string,
         contractTokensId?: string | null,
@@ -363,6 +382,7 @@ export type DeleteContractMutation = {
       items:  Array< {
         __typename: "Token",
         id: string,
+        price?: number | null,
         createdAt: string,
         updatedAt: string,
         contractTokensId?: string | null,
@@ -409,6 +429,7 @@ export type CreateTokenMutation = {
       token?:  {
         __typename: "Token",
         id: string,
+        price?: number | null,
         createdAt: string,
         updatedAt: string,
         contractTokensId?: string | null,
@@ -424,6 +445,7 @@ export type CreateTokenMutation = {
       updatedAt: string,
       productTokenId?: string | null,
     } | null,
+    price?: number | null,
     createdAt: string,
     updatedAt: string,
     contractTokensId?: string | null,
@@ -465,6 +487,7 @@ export type UpdateTokenMutation = {
       token?:  {
         __typename: "Token",
         id: string,
+        price?: number | null,
         createdAt: string,
         updatedAt: string,
         contractTokensId?: string | null,
@@ -480,6 +503,7 @@ export type UpdateTokenMutation = {
       updatedAt: string,
       productTokenId?: string | null,
     } | null,
+    price?: number | null,
     createdAt: string,
     updatedAt: string,
     contractTokensId?: string | null,
@@ -521,6 +545,7 @@ export type DeleteTokenMutation = {
       token?:  {
         __typename: "Token",
         id: string,
+        price?: number | null,
         createdAt: string,
         updatedAt: string,
         contractTokensId?: string | null,
@@ -536,6 +561,7 @@ export type DeleteTokenMutation = {
       updatedAt: string,
       productTokenId?: string | null,
     } | null,
+    price?: number | null,
     createdAt: string,
     updatedAt: string,
     contractTokensId?: string | null,
@@ -584,6 +610,7 @@ export type CreateProductMutation = {
         updatedAt: string,
         productTokenId?: string | null,
       } | null,
+      price?: number | null,
       createdAt: string,
       updatedAt: string,
       contractTokensId?: string | null,
@@ -642,6 +669,7 @@ export type UpdateProductMutation = {
         updatedAt: string,
         productTokenId?: string | null,
       } | null,
+      price?: number | null,
       createdAt: string,
       updatedAt: string,
       contractTokensId?: string | null,
@@ -700,6 +728,7 @@ export type DeleteProductMutation = {
         updatedAt: string,
         productTokenId?: string | null,
       } | null,
+      price?: number | null,
       createdAt: string,
       updatedAt: string,
       contractTokensId?: string | null,
@@ -738,6 +767,7 @@ export type GetContractQuery = {
       items:  Array< {
         __typename: "Token",
         id: string,
+        price?: number | null,
         createdAt: string,
         updatedAt: string,
         contractTokensId?: string | null,
@@ -814,6 +844,7 @@ export type GetTokenQuery = {
       token?:  {
         __typename: "Token",
         id: string,
+        price?: number | null,
         createdAt: string,
         updatedAt: string,
         contractTokensId?: string | null,
@@ -829,6 +860,7 @@ export type GetTokenQuery = {
       updatedAt: string,
       productTokenId?: string | null,
     } | null,
+    price?: number | null,
     createdAt: string,
     updatedAt: string,
     contractTokensId?: string | null,
@@ -876,6 +908,7 @@ export type ListTokensQuery = {
         updatedAt: string,
         productTokenId?: string | null,
       } | null,
+      price?: number | null,
       createdAt: string,
       updatedAt: string,
       contractTokensId?: string | null,
@@ -925,6 +958,7 @@ export type GetProductQuery = {
         updatedAt: string,
         productTokenId?: string | null,
       } | null,
+      price?: number | null,
       createdAt: string,
       updatedAt: string,
       contractTokensId?: string | null,
@@ -958,6 +992,7 @@ export type ListProductsQuery = {
       token?:  {
         __typename: "Token",
         id: string,
+        price?: number | null,
         createdAt: string,
         updatedAt: string,
         contractTokensId?: string | null,
@@ -994,6 +1029,7 @@ export type OnCreateContractSubscription = {
       items:  Array< {
         __typename: "Token",
         id: string,
+        price?: number | null,
         createdAt: string,
         updatedAt: string,
         contractTokensId?: string | null,
@@ -1023,6 +1059,7 @@ export type OnUpdateContractSubscription = {
       items:  Array< {
         __typename: "Token",
         id: string,
+        price?: number | null,
         createdAt: string,
         updatedAt: string,
         contractTokensId?: string | null,
@@ -1052,6 +1089,7 @@ export type OnDeleteContractSubscription = {
       items:  Array< {
         __typename: "Token",
         id: string,
+        price?: number | null,
         createdAt: string,
         updatedAt: string,
         contractTokensId?: string | null,
@@ -1093,6 +1131,7 @@ export type OnCreateTokenSubscription = {
       token?:  {
         __typename: "Token",
         id: string,
+        price?: number | null,
         createdAt: string,
         updatedAt: string,
         contractTokensId?: string | null,
@@ -1108,6 +1147,7 @@ export type OnCreateTokenSubscription = {
       updatedAt: string,
       productTokenId?: string | null,
     } | null,
+    price?: number | null,
     createdAt: string,
     updatedAt: string,
     contractTokensId?: string | null,
@@ -1144,6 +1184,7 @@ export type OnUpdateTokenSubscription = {
       token?:  {
         __typename: "Token",
         id: string,
+        price?: number | null,
         createdAt: string,
         updatedAt: string,
         contractTokensId?: string | null,
@@ -1159,6 +1200,7 @@ export type OnUpdateTokenSubscription = {
       updatedAt: string,
       productTokenId?: string | null,
     } | null,
+    price?: number | null,
     createdAt: string,
     updatedAt: string,
     contractTokensId?: string | null,
@@ -1195,6 +1237,7 @@ export type OnDeleteTokenSubscription = {
       token?:  {
         __typename: "Token",
         id: string,
+        price?: number | null,
         createdAt: string,
         updatedAt: string,
         contractTokensId?: string | null,
@@ -1210,6 +1253,7 @@ export type OnDeleteTokenSubscription = {
       updatedAt: string,
       productTokenId?: string | null,
     } | null,
+    price?: number | null,
     createdAt: string,
     updatedAt: string,
     contractTokensId?: string | null,
@@ -1253,6 +1297,7 @@ export type OnCreateProductSubscription = {
         updatedAt: string,
         productTokenId?: string | null,
       } | null,
+      price?: number | null,
       createdAt: string,
       updatedAt: string,
       contractTokensId?: string | null,
@@ -1306,6 +1351,7 @@ export type OnUpdateProductSubscription = {
         updatedAt: string,
         productTokenId?: string | null,
       } | null,
+      price?: number | null,
       createdAt: string,
       updatedAt: string,
       contractTokensId?: string | null,
@@ -1359,6 +1405,7 @@ export type OnDeleteProductSubscription = {
         updatedAt: string,
         productTokenId?: string | null,
       } | null,
+      price?: number | null,
       createdAt: string,
       updatedAt: string,
       contractTokensId?: string | null,

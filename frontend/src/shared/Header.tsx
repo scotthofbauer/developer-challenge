@@ -1,5 +1,5 @@
 import React from 'react';
-import { AppBar, Button, Grid, Link, Toolbar, Typography, useMediaQuery } from '@mui/material';
+import { AppBar, Grid, Link, Typography } from '@mui/material';
 import { makeStyles } from '@mui/styles';
 import { useNavigate } from "react-router-dom";
 
@@ -35,7 +35,6 @@ const useStyles = makeStyles(() => ({
 const Header: React.FC<HeaderProps> = ({address}: HeaderProps) => {
     const classes = useStyles();
     const navigate = useNavigate();
-    const matches = useMediaQuery('(max-width:600px)');
 
 
 

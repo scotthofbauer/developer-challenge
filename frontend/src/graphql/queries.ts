@@ -17,6 +17,7 @@ export const getContract = /* GraphQL */ `
       tokens {
         items {
           id
+          price
           createdAt
           updatedAt
           contractTokensId
@@ -81,6 +82,7 @@ export const getToken = /* GraphQL */ `
         owner
         token {
           id
+          price
           createdAt
           updatedAt
           contractTokensId
@@ -96,6 +98,7 @@ export const getToken = /* GraphQL */ `
         updatedAt
         productTokenId
       }
+      price
       createdAt
       updatedAt
       contractTokensId
@@ -138,6 +141,7 @@ export const listTokens = /* GraphQL */ `
           updatedAt
           productTokenId
         }
+        price
         createdAt
         updatedAt
         contractTokensId
@@ -180,6 +184,7 @@ export const getProduct = /* GraphQL */ `
           updatedAt
           productTokenId
         }
+        price
         createdAt
         updatedAt
         contractTokensId
@@ -209,6 +214,7 @@ export const listProducts = /* GraphQL */ `
         owner
         token {
           id
+          price
           createdAt
           updatedAt
           contractTokensId
