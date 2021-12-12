@@ -4,7 +4,10 @@ import awsExports from './aws-exports';
 import Home from './pages/home/Home';
 import MarketPlace from './pages/marketplace/MarketPlace';
 import { Route, BrowserRouter, Routes } from 'react-router-dom';
+import { createTheme, ThemeProvider } from '@mui/material';
+import { orange } from '@mui/material/colors';
 Amplify.configure(awsExports);
+
 
 
 const App = () => {
@@ -14,7 +17,6 @@ const App = () => {
       if(window.ethereum) {
           window.ethereum.request({method: 'eth_requestAccounts'}).then((result:any) => {
             accountChangedHandler(result[0])
-
         })
       }else {
           window.alert('Non-Ethereum browser detected. You should consider trying MetaMask!')
@@ -25,16 +27,29 @@ const App = () => {
         setDefaultAccount(newAccount);
     }
 
+  const theme = createTheme({
+      palette: {
+        primary: {
+          main: '#8435AC',
+          light:'#FCF7F8',
+          dark: '#252323'
+        },
+        secondary: {
+          main: '#A23F7D',
+        },
+      },
+    });
+    
+
   return (
-   
-      <div>
+      <ThemeProvider theme={theme}>
         <BrowserRouter>
           <Routes>
             <Route path={'/'} element={<Home address={defaultAccount}/>}></Route>
             <Route path={'/marketplace'} element={<MarketPlace address={defaultAccount}/>}></Route>
           </Routes>
         </BrowserRouter>
-      </div>
+       </ThemeProvider>
   )
 
 }

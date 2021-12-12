@@ -79,7 +79,7 @@ export const mintToken = async (address: string) => {
 
 
         }
-        return "it worked"
+        return null;
     }catch(error: any) {
         console.log("error minting: ", error);
     }

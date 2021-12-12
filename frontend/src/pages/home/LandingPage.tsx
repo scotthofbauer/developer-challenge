@@ -1,16 +1,13 @@
 import React, { useState } from 'react'
-import { Button, CircularProgress, LinearProgress} from '@mui/material';
+import { Button, Card, CardContent, CardMedia, CircularProgress, Grid, LinearProgress, Theme, Typography} from '@mui/material';
 import { makeStyles } from '@mui/styles';
-import { mintToken,
-        // getRandomProductID, 
-        // getOwner, 
-        // getTotalSupply
-        } 
+import { mintToken} 
 from '../../api/Api';
 import { Box } from '@mui/system';
 import AlertSnackBar from '../../shared/AlertSnackBar';
-// import { API } from 'aws-amplify';
-// import * as queries from '../../graphql/queries';
+import { ClassNames } from '@emotion/react';
+import { Token } from '../../API';
+import NFTCard from '../marketplace/NFTCard';
 export interface LandingPageProps {
     address: string | null;
 }
@@ -21,7 +18,7 @@ const LandingPage: React.FC<LandingPageProps> = ({address}: LandingPageProps) =>
     const [snackBar, setSnackBar] = useState<boolean>(false);
     const [success, setSuccess] = useState<boolean>(false);
 
-    const useStyles = makeStyles(() => ({
+    const useStyles = makeStyles((theme: Theme) => ({
         root: {
             display: 'flex',
             justifyContent: "center",
@@ -33,23 +30,35 @@ const LandingPage: React.FC<LandingPageProps> = ({address}: LandingPageProps) =>
             diplsay: 'flex',
             alignItems: 'center',
         },
+        card: {
+            height: '55%',
+            alignItems: 'center',
+            background: `${theme.palette.primary.dark}`,
+        },
         wrapper: {
             position: "relative"
         },
         text: {
             fontSize: '2rem',
-            color:'white'
+            color: `${theme.palette.primary.light}`
         },
-        arrow: {
-            color: 'white',
-            fontSize: '4rem',
+        title: {
+            fontWeight: 'bold',
+            color: `${theme.palette.primary.light}`
+        },
+        subtitle: {
+            color: `${theme.palette.primary.dark}`
         },
         colorPrimary: {
-            backgroundColor: '#e8eaf6'
-          },
+            backgroundColor: `${theme.palette.success}`
+        },
         barColorPrimary: {
-            backgroundColor: '#03a9f4'
+            backgroundColor: `${theme.palette.primary.dark}`
+        },
+        cardContent: {
+            background: `${theme.palette.primary.dark}`,
         }
+
     }));
     
 
@@ -58,7 +67,6 @@ const LandingPage: React.FC<LandingPageProps> = ({address}: LandingPageProps) =>
 
     const handleClick = async () => {
         if(address) {
-
             let result;
             try{
                 setIsLoading(true);
@@ -82,6 +90,26 @@ const LandingPage: React.FC<LandingPageProps> = ({address}: LandingPageProps) =>
     }
 
     const closeSnackBar = () => setSnackBar(false);
+
+    const exampleToken: Token = {
+        id: "123",
+        product: {
+            id: '123',
+            owner: '0x12345678901234567899212345',
+            img: 'https://developerchallenges3nft212305-dev.s3.us-east-2.amazonaws.com/shoe4.png',
+            name: 'Air Jordan 4s',
+            brand: 'Hoff Industries',
+            year: '2021',
+            minted: false,
+            redeemed: false,
+            __typename: 'Product',
+            createdAt: 'now',
+            updatedAt: 'now'
+        },
+        __typename: 'Token',
+        createdAt: '',
+        updatedAt: ''
+    }
     
     console.log("loading: ", isLoading)
     return (
@@ -108,25 +136,67 @@ const LandingPage: React.FC<LandingPageProps> = ({address}: LandingPageProps) =>
 
             <div className={classes.root}>
                 <div className={classes.container}>
-                    <h1 className={classes.text}> Welcome to Hoff Industries NFTs</h1>
-                        <div className={classes.wrapper}>
-                            <Button
-                                variant='contained'
-                                color='error'
-                                onClick={async () => {
-                                    // toggleLoading(true);
-                                    await handleClick();
-                                    // toggleLoading(false);
-                                    
-                                }}
-                                disabled={isLoading}
-                            >
-                            {address? "Mint" : "Connect"}
-                            </Button>
-                            {isLoading && (
-                                <CircularProgress />
-                            )}                    
-                        </div>
+                    <Grid container spacing={5}>
+                        <Grid item xs={12} sm={6}>
+                            <Typography variant="h1" component="div" className={classes.title}>
+                                Welcome to Hoff Industries NFTs
+                            </Typography>
+                            <Typography variant="h4" component="div" className={classes.subtitle}>
+                                Begin minting some NFTS
+                            </Typography>
+                            <div className={classes.wrapper}>
+                                <Button
+                                    size='large'
+                                    variant='contained'
+                                    onClick={async () => {
+                                        await handleClick();                                    
+                                    }}
+                                    disabled={isLoading}
+                                    sx={{background: '#252323', color: '#FCF7F8', marginTop: '50px'}}
+                                >
+                                {address ? "Mint" : "Connect"}
+                                {isLoading && (
+                                    <CircularProgress />
+                                )}                    
+                                </Button>
+                            </div>
+                        </Grid>
+                        <Grid item xs={1} sm={1}></Grid>
+
+                        <Grid item xs={0} sm={3}>
+                            <Box display={{ xs: "none", sm: "block"}} sx={{background: "#252323"}}>
+                                <Card className={classes.card}>
+                                    <div>
+                                        <CardMedia
+                                            component="img"
+                                            alt="NFT Shoe Image"
+                                            image={exampleToken?.product?.img}
+                                            sx={{background: "#252323"}}
+
+                                        />
+                                    </div>
+                                    <CardContent className={classes.cardContent}>
+                                        <Typography variant="h5" component="div" className={classes.text}>
+                                        {exampleToken?.product?.name}
+                                        </Typography>
+                                        <Typography gutterBottom variant="h6" className={classes.text}>
+                                        Year: {exampleToken?.product?.year}
+                                        </Typography>
+                                        <Typography gutterBottom variant="body2" className={classes.text}>
+                                        Owner: {exampleToken?.product?.owner}
+                                        </Typography>
+                                    </CardContent>
+                                </Card>
+                            </Box>
+                        </Grid>
+
+
+
+                    </Grid>
+
+
+
+                       
                 </div>
             </div>
         </div>

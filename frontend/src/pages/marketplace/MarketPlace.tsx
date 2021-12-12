@@ -16,9 +16,10 @@ interface MarketPlaceProps {
 
 const useStyles = makeStyles(() => ({
     root: {
-      minHeight: '100vh',
-      backgroundColor: '#000000',
-      backgroundImage: 'linear-gradient(315deg, #000000 0%, #7f8c8d 74%)'
+        minHeight: '100vh',
+    //   backgroundColor: '#94B9AF',
+        backgroundImage: 'linear-gradient(315deg, #A23F7D 0%, #8435ac 100%)'
+
     },
     hr: {
       width: '75%'
@@ -116,7 +117,7 @@ const MarketPlace: React.FC<MarketPlaceProps> = ({address}) => {
                             <div >
                                 <Grid container spacing={4} className={classes.grid}>
                                     {data.map((token) => (                              
-                                        <Grid key={token.id} item xs={12} sm={4}>
+                                        <Grid key={token.id} item xs={12} sm={4} >
                                             <NFTCard key={token.id} token={token} handleModal={handleModal} setSelectedNFT={setSelectedNFT} setSell={setSell} />
                                         </Grid>
                                     ))}  

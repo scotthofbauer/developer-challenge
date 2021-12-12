@@ -24,7 +24,7 @@ const Footer = () => {
                     <Typography variant="h5" color='#ffffff' className={classes.header}>
                         Hoff Industries
                     </Typography>
-                    <Typography variant="subtitle1" color='#ffffff' className={classes.header}>
+                    <Typography color='#ffffff' className={classes.header}>
                         @2021 All right reserved
                     </Typography>
             </Grid>
