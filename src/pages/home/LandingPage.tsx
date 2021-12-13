@@ -16,7 +16,7 @@ const exampleToken: Token = {
         id: '123',
         owner: '0x12345678901234567899212345',
         img: 'https://developerchallenges3nft212305-dev.s3.us-east-2.amazonaws.com/shoe4.png',
-        name: 'Air Jordan 4s',
+        name: 'Hoff Trainers',
         brand: 'Hoff Industries',
         year: '2021',
         minted: false,

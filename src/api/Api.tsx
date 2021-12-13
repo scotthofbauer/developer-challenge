@@ -74,7 +74,7 @@ export const burnToken = async (address: string, walletID: string, token: Token)
         //checks to make sure the address trying to burn a token owns the token
         const checkOwnerResult = await getOwner(token);
         if(checkOwnerResult === address && token.product){
-            console.log("kld-from: ", `HD-${config.HD_WALLET_RUNTIME}-${walletID}-1`);
+            console.log("kld-from: ", `HD-${config.HD_WALLET_RUNTIME}-${walletID}-0`);
             const res = await contractInstance.post('/burn', 
             {
                 'tokenId': `${token.id}`
@@ -82,7 +82,7 @@ export const burnToken = async (address: string, walletID: string, token: Token)
             {
                 // HD-runtimeID-walletID-index
                 params: {
-                    'kld-from': `HD-${config.HD_WALLET_RUNTIME}-${walletID}-1`,
+                    'kld-from': `HD-${config.HD_WALLET_RUNTIME}-${walletID}-0`,
                     'kld-sync': true
                 },
             });
@@ -112,6 +112,7 @@ export const transferToken = async (addressFrom: string, addressTo: string, wall
     try {
         //checks to make sure the address trying to burn a token owns the token
         const checkOwnerResult = await getOwner(token);
+        console.log("kld-from: ", `HD-${config.HD_WALLET_RUNTIME}-${walletID}-0`);
         if(checkOwnerResult === addressFrom && token.product){
             const res = await contractInstance.post('/transferFrom', 
             {
