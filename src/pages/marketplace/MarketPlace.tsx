@@ -110,12 +110,12 @@ const MarketPlace: React.FC<MarketPlaceProps> = ({address}) => {
                             />
                         )
                         }
-                        {(data.length > 0 && !isLoading) ? (
+                        {(data && !isLoading) && (
                             <div >
                                 <Grid container spacing={4} className={classes.grid}>
                                     {data.map((token) => (                              
                                         <Grid key={token.id} item xs={12} sm={4} >
-                                            <NFTCard key={token.id} token={token} handleModal={handleModal} setSelectedNFT={setSelectedNFT} setSell={setSell} />
+                                            <NFTCard key={token.id} token={token} handleModal={handleModal} setSelectedNFT={setSelectedNFT} setSell={setSell} address={address}/>
                                         </Grid>
                                     ))}  
                                 </Grid>
@@ -128,13 +128,8 @@ const MarketPlace: React.FC<MarketPlaceProps> = ({address}) => {
                                             closeModalRefresh={closeModalRefresh}
                                         /> : null}
                             </div>
-                        ) : (
-                            <div>
-                                <h1>No NFTs Minted </h1>
-                            </div>
-                        )  
+                        ) 
                     }
-            
             </div>
     )
 }

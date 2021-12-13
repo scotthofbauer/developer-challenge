@@ -6,34 +6,22 @@ import * as queries from '../graphql/queries';
 // import config from '../config.json';
 import config from '../config.json';
 import { DeleteTokenInput, Product, Token, UpdateProductInput } from '../API';
+import { MintTokenKaliedoResponse } from './Models';
 
-const contractUrl = "https://u0rymjyyct-u0fj2prbvx-connect.us0-aws.kaleido.io/instances/0xecfccb323d855a803e374962aa203a12934b7c7b"
+const contractUrl = `${config.KALEIDO_REST_GATEWAY_URL}/instances/${config.CONTRACT_ADDRESS}`
 const contractInstance = axios.create({
     baseURL: contractUrl,
     timeout: 30000,
-    headers: {'Authorization': 'Basic dTBiMHYxZm5jdTpKS1Y5MzZUc0xTcXRnZFREVEdZOGZtWGNrV0xJZkNjemZiMkNQMFJvUDdz'}
+    headers: {'Authorization': `${config.BASIC_AUTH}`}
 });
 
-export const getTotalSupply  = async (address: string) => {
-    try{
-        const res = await contractInstance.get('/totalSupply', {
-            params: {
-                'kld-from': `${address}`
-            }
-        });
-        return res.data;
-    }catch (error: any){
-        console.log("error getting supply: ", error);
-    }
-}
 
 export const mintToken = async (address: string) => {
     try{
-        console.log("Minting")
         const productId = await getRandomProductID();
         const newTokenId = Math.floor(Math.random() * 20000000);
         if(productId && newTokenId){
-            const res = await contractInstance.post('/mint', 
+            const res:MintTokenKaliedoResponse = await contractInstance.post('/mint', 
             {
                 'to': `${address}`,
                 'tokenId': newTokenId.toString()
@@ -46,17 +34,15 @@ export const mintToken = async (address: string) => {
 
             });
             if(res.data.headers.type === 'TransactionSuccess') {
-            
-                console.log("Transaction Success!");
                 //Insert New Token to GraphQL
                 const newTokenDetails = {
                     id: newTokenId.toString(),
                     contractTokensId: `${config.CONTRACT_ADDRESS}`,
                     tokenProductId: productId.toString(),
                 };
-                const newTokenResult = (await API.graphql(graphqlOperation(mutations.createToken, {input: newTokenDetails})) as any);
+                let newTokenResult = (await API.graphql(graphqlOperation(mutations.createToken, {input: newTokenDetails})) as any);
+
                 console.log("newTokenResult: ", newTokenResult);
-    
                 //Update Product to link to new Token
                 const updateProductDetails: UpdateProductInput = {
                     id: productId.toString(),
@@ -64,15 +50,19 @@ export const mintToken = async (address: string) => {
                     minted: true,
                     owner: `${address}`,
                 }
-                console.log("updateProductDetails", updateProductDetails);
                 const updateProductDetailsResult = (await API.graphql(graphqlOperation(mutations.updateProduct, {input: updateProductDetails})) as any);
-                console.log("updatedProductResult: ", updateProductDetailsResult)
-                return res.data;
+                console.log("updateProductDetailsResult: ", updateProductDetailsResult)
+
+                //Work Around because newTokenResult doesn't have the owner, 
+                //that is returned on updateProduct response. This is for UI purposes
+                newTokenResult.data.createToken.product.owner = updateProductDetailsResult.data.updateProduct.owner;
+
+                return newTokenResult;
             }
+            return null;
         }
-        return null;
     }catch(error: any) {
-        console.log("error minting: ", error);
+        throw new Error(error);
     }
 }
 
@@ -99,7 +89,7 @@ export const getRandomProductID = async () => {
         console.log(ids);
         return selectedId
     }catch(error: any) {
-        console.log("error getting avaliable products: ", error);
+        throw new Error(error);
     }
 }
 
@@ -116,7 +106,7 @@ export const burnToken = async (address: string, walletID: string, token: Token)
             {
                 // HD-runtimeID-walletID-index
                 params: {
-                    'kld-from': `HD-${config.HD_WALLET_RUNTIME}-${walletID}-0`,
+                    'kld-from': `HD-${config.HD_WALLET_RUNTIME}-${walletID}-1`,
                     'kld-sync': true
                 },
             });
@@ -139,7 +129,7 @@ export const burnToken = async (address: string, walletID: string, token: Token)
             }
         }
     } catch (error: any) {
-        console.log("error burning token")
+        throw new Error(error);
     }
 }
 
@@ -175,7 +165,7 @@ export const transferToken = async (addressFrom: string, addressTo: string, wall
             }
         }
     } catch (error: any) {
-        console.log("error transferring tokens")
+        throw new Error(error);
     }
 }
 
@@ -187,12 +177,11 @@ export const getOwner = async (token: Token) => {
                 'tokenId': `${token.id}`,
                 'kld-from': `${config.MINTER_ADDRESS}`,
             },
-
         });
         return res.data.output;
 
     } catch (error: any) {
-        console.log("error checking owner of token: ", error);
+        throw new Error(error);
     }
 }
 

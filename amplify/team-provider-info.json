@@ -15,6 +15,12 @@
       "auth": {
         "developerchallenge51986182": {},
         "true": {}
+      },
+      "hosting": {
+        "amplifyhosting": {
+          "appId": "dzchsmcrxvuvy",
+          "type": "manual"
+        }
       }
     }
   }

@@ -95,8 +95,8 @@ const Header:React.FC<HeaderProps> = ({address}) => {
                           }}    
                     >
                         <div>
-                            <IconButton>
-                                <ChevronRightIcon onClick={() => setOpen(false)}/>
+                            <IconButton onClick={() => setOpen(false)}>
+                                <ChevronRightIcon />
                             </IconButton>
                         </div>
                         <Divider />

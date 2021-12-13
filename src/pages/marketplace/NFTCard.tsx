@@ -1,20 +1,21 @@
 import React from 'react';
-// import { makeStyles } from '@mui/styles';
 import { Button, Card, CardActions, CardContent, Typography, CardMedia, Theme } from '@mui/material';
 import { Token } from '../../API';
 import { makeStyles } from '@mui/styles';
+import StarIcon from '@mui/icons-material/Star';
 
 interface NFTCardProps {
   token: Token
   handleModal: () => void
   setSelectedNFT: (token: Token) => void
   setSell: (sell: boolean) => void
+  address: string | null
 }
 
 
 
 
-const NFTCard: React.FC<NFTCardProps> = ({token, handleModal, setSelectedNFT, setSell}: NFTCardProps) => {
+const NFTCard: React.FC<NFTCardProps> = ({token, handleModal, setSelectedNFT, setSell, address}: NFTCardProps) => {
 
     const useStyles = makeStyles((theme: Theme) => ({
       card: {
@@ -63,6 +64,11 @@ const NFTCard: React.FC<NFTCardProps> = ({token, handleModal, setSelectedNFT, se
                 </Typography>
                 <Typography gutterBottom variant="body2" className={classes.text}>
                 Owner: {token?.product?.owner}
+                </Typography>
+                <Typography gutterBottom variant="body2" className={classes.text}>
+                {(address === token?.product?.owner) && (
+                  <StarIcon />
+                )}
                 </Typography>
             </CardContent>
             <CardActions className={classes.buttonContainer}>

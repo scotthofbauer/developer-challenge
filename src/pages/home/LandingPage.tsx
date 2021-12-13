@@ -30,6 +30,7 @@ const exampleToken: Token = {
     updatedAt: ''
 }
 
+
 const useStyles = makeStyles((theme: Theme) => ({
     root: {
         display: 'flex',
@@ -75,12 +76,16 @@ const useStyles = makeStyles((theme: Theme) => ({
 }));
 
 
+
+
 const LandingPage: React.FC<LandingPageProps> = ({address}: LandingPageProps) => {
     const [isLoading, setIsLoading] = useState<boolean>(false);
     const [snackBar, setSnackBar] = useState<boolean>(false);
     const [success, setSuccess] = useState<boolean>(false);
+    const [defaultToken, setDefaultToken] = useState<Token>(exampleToken);
     const classes = useStyles();
     const closeSnackBar = () => setSnackBar(false);
+
 
     const handleClick = async () => {
         if(address) {
@@ -88,15 +93,14 @@ const LandingPage: React.FC<LandingPageProps> = ({address}: LandingPageProps) =>
             try{
                 setIsLoading(true);
                 result = await mintToken(address);
-                // result = await getTotalSupply("0xb8c4717638b27b0c85f0f2996187c1079d655622");
                 console.log("result: ", result);
 
             }catch(error) {
                 console.log("error minting token: ", error);
             }finally {
-                if(result && result.headers.type === 'TransactionSuccess'){
-                // if(false){
+                if(result){
                     setSuccess(true);
+                    setDefaultToken(result.data.createToken);
                 }else {
                     setSuccess(false);
                 }
@@ -105,6 +109,7 @@ const LandingPage: React.FC<LandingPageProps> = ({address}: LandingPageProps) =>
             }
         }
     }
+
 
     return (
         <div>
@@ -159,32 +164,38 @@ const LandingPage: React.FC<LandingPageProps> = ({address}: LandingPageProps) =>
                             </div>
                         </Grid>
                         <Grid item xs={1} sm={1}></Grid>
-                        <Grid item xs={0} sm={3}>
-                            <Box display={{ xs: "none", sm: "block"}} sx={{background: "#252323"}}>
-                                <Card className={classes.card}>
-                                    <div>
-                                        <CardMedia
-                                            component="img"
-                                            alt="NFT Shoe Image"
-                                            image={exampleToken?.product?.img}
-                                            sx={{background: "#252323"}}
+                        {isLoading ? (
+                            <CircularProgress />
+                        ) : (
+                            <Grid item xs={0} sm={3}>
+                                <Box display={{ xs: "none", sm: "block"}} sx={{background: "#252323"}}>
+                                    <Card className={classes.card}>
+                                        <div>
+                                            <CardMedia
+                                                component="img"
+                                                alt="NFT Shoe Image"
+                                                image={defaultToken?.product?.img}
+                                                sx={{background: "#252323"}}
 
-                                        />
-                                    </div>
-                                    <CardContent className={classes.cardContent}>
-                                        <Typography variant="h5" component="div" className={classes.text}>
-                                        {exampleToken?.product?.name}
-                                        </Typography>
-                                        <Typography gutterBottom variant="h6" className={classes.text}>
-                                        Year: {exampleToken?.product?.year}
-                                        </Typography>
-                                        <Typography gutterBottom variant="body2" className={classes.text}>
-                                        Owner: {exampleToken?.product?.owner}
-                                        </Typography>
-                                    </CardContent>
-                                </Card>
-                            </Box>
-                        </Grid>
+                                            />
+                                        </div>
+                                        <CardContent className={classes.cardContent}>
+                                            <Typography variant="h5" component="div" className={classes.text}>
+                                            {exampleToken?.product?.name}
+                                            </Typography>
+                                            <Typography gutterBottom variant="h6" className={classes.text}>
+                                            Year: {defaultToken?.product?.year}
+                                            </Typography>
+                                            <Typography gutterBottom variant="body2" className={classes.text}>
+                                            Owner: {defaultToken?.product?.owner}
+                                            </Typography>
+                                        </CardContent>
+                                    </Card>
+                                </Box>
+
+                            </Grid>
+                        )}    
+
                     </Grid>
                 </div>
             </div>

@@ -59,7 +59,6 @@ const NFTModal:React.FC<ModalProps> = ({open, handleModal, token, sell, address,
                 setIsLoading(true);
                 result = await burnToken(address, walletId, token);
             }
-            // result = await getTotalSupply('0xb8c4717638b27b0c85f0f2996187c1079d655622');
         }catch (error: any){
             console.log('error selling token');
         } finally {
