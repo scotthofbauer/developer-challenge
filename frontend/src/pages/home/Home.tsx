@@ -14,8 +14,7 @@ interface HomeProps {
 const useStyles = makeStyles((theme: Theme) => ({
     root: {
       minHeight: '100vh',
-      backgroundColor: '#CA9CE1',
-      backgroundImage: `linear-gradient(315deg, ${theme.palette.primary.main} 0%, #8435ac 100%)`
+      backgroundColor: theme.palette.primary.main,
     },
     hr: {
       width: '75%'

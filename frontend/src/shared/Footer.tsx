@@ -1,8 +1,8 @@
-import { Grid, Link, Typography } from '@mui/material';
+import { Grid, Link, Theme, Typography } from '@mui/material';
 import { makeStyles } from '@mui/styles';
 import React from 'react';
 
-const useStyles = makeStyles((theme) => ({
+const useStyles = makeStyles((theme: Theme) => ({
     root: {
         height: '30vh',
         display: 'flex',
@@ -11,7 +11,8 @@ const useStyles = makeStyles((theme) => ({
         textAlign: 'center',
     },
     header: {
-        color: '#ffffff'
+        color: `${theme.palette.primary.light}`,
+
     }
 
 }));

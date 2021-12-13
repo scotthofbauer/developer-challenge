@@ -5,14 +5,14 @@ import Home from './pages/home/Home';
 import MarketPlace from './pages/marketplace/MarketPlace';
 import { Route, BrowserRouter, Routes } from 'react-router-dom';
 import { createTheme, ThemeProvider } from '@mui/material';
-import { orange } from '@mui/material/colors';
 Amplify.configure(awsExports);
 
 
 
 const App = () => {
-
   const [defaultAccount, setDefaultAccount] = useState(null);
+  
+  //get the account address from account signed in to MetaMask
   useEffect(() => {
       if(window.ethereum) {
           window.ethereum.request({method: 'eth_requestAccounts'}).then((result:any) => {

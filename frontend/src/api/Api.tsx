@@ -14,13 +14,6 @@ const contractInstance = axios.create({
     headers: {'Authorization': 'Basic dTBiMHYxZm5jdTpKS1Y5MzZUc0xTcXRnZFREVEdZOGZtWGNrV0xJZkNjemZiMkNQMFJvUDdz'}
 });
 
-// const consortiaInstance = axios.create({
-//     baseURL: process.env.REACT_APP_KALIEDO_BASE_URL,
-//     timeout: 1000,
-//     headers: {'Authorization': `Bearer ${process.env.REACT_APP_API_KEY}`}
-// });
-
-
 export const getTotalSupply  = async (address: string) => {
     try{
         const res = await contractInstance.get('/totalSupply', {
@@ -76,8 +69,6 @@ export const mintToken = async (address: string) => {
                 console.log("updatedProductResult: ", updateProductDetailsResult)
                 return res.data;
             }
-
-
         }
         return null;
     }catch(error: any) {

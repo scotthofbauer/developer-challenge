@@ -24,17 +24,17 @@ const NFTCard: React.FC<NFTCardProps> = ({token, handleModal, setSelectedNFT, se
         alignItems: 'center',
       },
       content: {
-        background: `${theme.palette.primary.dark}`,
+        background: theme.palette.primary.dark,
         padding: '10px',
         justifyContent: 'left',
         alignItems: 'left',
-        color: `${theme.palette.primary.light}`,
+        color: theme.palette.primary.light,
       },
       buttonContainer: {
-        background: `${theme.palette.primary.dark}`,
+        background: theme.palette.primary.dark,
       }, 
       text: {
-        color: `${theme.palette.primary.light}`,
+        color: theme.palette.primary.light,
       }
 
 

@@ -5,65 +5,82 @@ import { mintToken}
 from '../../api/Api';
 import { Box } from '@mui/system';
 import AlertSnackBar from '../../shared/AlertSnackBar';
-import { ClassNames } from '@emotion/react';
 import { Token } from '../../API';
-import NFTCard from '../marketplace/NFTCard';
 export interface LandingPageProps {
     address: string | null;
 }
+
+const exampleToken: Token = {
+    id: "123",
+    product: {
+        id: '123',
+        owner: '0x12345678901234567899212345',
+        img: 'https://developerchallenges3nft212305-dev.s3.us-east-2.amazonaws.com/shoe4.png',
+        name: 'Air Jordan 4s',
+        brand: 'Hoff Industries',
+        year: '2021',
+        minted: false,
+        redeemed: false,
+        __typename: 'Product',
+        createdAt: 'now',
+        updatedAt: 'now'
+    },
+    __typename: 'Token',
+    createdAt: '',
+    updatedAt: ''
+}
+
+const useStyles = makeStyles((theme: Theme) => ({
+    root: {
+        display: 'flex',
+        justifyContent: 'center',
+        alignItems: 'center',
+        height: '100vh',
+        textAlign: 'center',
+    }, 
+    container: {
+        diplsay: 'flex',
+        alignItems: 'center',
+    },
+    card: {
+        height: '55%',
+        alignItems: 'center',
+        background: theme.palette.primary.dark,
+    },
+    wrapper: {
+        position: 'relative'
+    },
+    text: {
+        fontSize: '2rem',
+        color: theme.palette.primary.light
+    },
+    title: {
+        fontWeight: 'bold',
+        color: theme.palette.primary.light
+        
+    },
+    subtitle: {
+        color: theme.palette.primary.dark
+    },
+    colorPrimary: {
+        backgroundColor: theme.palette.success.main
+    },
+    barColorPrimary: {
+        backgroundColor: theme.palette.primary.dark
+    },
+    cardContent: {
+        background: theme.palette.primary.dark
+    }
+
+}));
 
 
 const LandingPage: React.FC<LandingPageProps> = ({address}: LandingPageProps) => {
     const [isLoading, setIsLoading] = useState<boolean>(false);
     const [snackBar, setSnackBar] = useState<boolean>(false);
     const [success, setSuccess] = useState<boolean>(false);
-
-    const useStyles = makeStyles((theme: Theme) => ({
-        root: {
-            display: 'flex',
-            justifyContent: "center",
-            alignItems: 'center',
-            height: '100vh',
-            textAlign: 'center',
-        }, 
-        container: {
-            diplsay: 'flex',
-            alignItems: 'center',
-        },
-        card: {
-            height: '55%',
-            alignItems: 'center',
-            background: `${theme.palette.primary.dark}`,
-        },
-        wrapper: {
-            position: "relative"
-        },
-        text: {
-            fontSize: '2rem',
-            color: `${theme.palette.primary.light}`
-        },
-        title: {
-            fontWeight: 'bold',
-            color: `${theme.palette.primary.light}`
-        },
-        subtitle: {
-            color: `${theme.palette.primary.dark}`
-        },
-        colorPrimary: {
-            backgroundColor: `${theme.palette.success}`
-        },
-        barColorPrimary: {
-            backgroundColor: `${theme.palette.primary.dark}`
-        },
-        cardContent: {
-            background: `${theme.palette.primary.dark}`,
-        }
-
-    }));
-    
-
-
     const classes = useStyles();
+    const closeSnackBar = () => setSnackBar(false);
 
     const handleClick = async () => {
         if(address) {
@@ -89,29 +106,6 @@ const LandingPage: React.FC<LandingPageProps> = ({address}: LandingPageProps) =>
         }
     }
 
-    const closeSnackBar = () => setSnackBar(false);
-
-    const exampleToken: Token = {
-        id: "123",
-        product: {
-            id: '123',
-            owner: '0x12345678901234567899212345',
-            img: 'https://developerchallenges3nft212305-dev.s3.us-east-2.amazonaws.com/shoe4.png',
-            name: 'Air Jordan 4s',
-            brand: 'Hoff Industries',
-            year: '2021',
-            minted: false,
-            redeemed: false,
-            __typename: 'Product',
-            createdAt: 'now',
-            updatedAt: 'now'
-        },
-        __typename: 'Token',
-        createdAt: '',
-        updatedAt: ''
-    }
-    
-    console.log("loading: ", isLoading)
     return (
         <div>
             {isLoading && (
@@ -131,14 +125,17 @@ const LandingPage: React.FC<LandingPageProps> = ({address}: LandingPageProps) =>
                     success={success} 
                     message={success ? "NFT successfully Minted" : "Error minting NFT"}
                 />
-            )
-            }
+            )}
 
             <div className={classes.root}>
                 <div className={classes.container}>
                     <Grid container spacing={5}>
                         <Grid item xs={12} sm={6}>
-                            <Typography variant="h1" component="div" className={classes.title}>
+                            <Typography 
+                                variant="h1" 
+                                component="div" 
+                                className={classes.title}
+                            >
                                 Welcome to Hoff Industries NFTs
                             </Typography>
                             <Typography variant="h4" component="div" className={classes.subtitle}>
@@ -162,7 +159,6 @@ const LandingPage: React.FC<LandingPageProps> = ({address}: LandingPageProps) =>
                             </div>
                         </Grid>
                         <Grid item xs={1} sm={1}></Grid>
-
                         <Grid item xs={0} sm={3}>
                             <Box display={{ xs: "none", sm: "block"}} sx={{background: "#252323"}}>
                                 <Card className={classes.card}>
@@ -189,14 +185,7 @@ const LandingPage: React.FC<LandingPageProps> = ({address}: LandingPageProps) =>
                                 </Card>
                             </Box>
                         </Grid>
-
-
-
                     </Grid>
-
-
-
-                       
                 </div>
             </div>
         </div>

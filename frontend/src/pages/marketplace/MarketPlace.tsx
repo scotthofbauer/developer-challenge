@@ -1,4 +1,4 @@
-import { Box, Grid, LinearProgress } from '@mui/material';
+import { Box, Grid, LinearProgress, Theme } from '@mui/material';
 import { makeStyles } from '@mui/styles';
 import React, { useEffect, useState } from 'react';
 import Header from '../../shared/Header';
@@ -14,12 +14,10 @@ interface MarketPlaceProps {
     address: string | null
 }
 
-const useStyles = makeStyles(() => ({
+const useStyles = makeStyles((theme : Theme) => ({
     root: {
         minHeight: '100vh',
-    //   backgroundColor: '#94B9AF',
-        backgroundImage: 'linear-gradient(315deg, #A23F7D 0%, #8435ac 100%)'
-
+        backgroundColor: theme.palette.primary.main
     },
     hr: {
       width: '75%'
@@ -90,7 +88,6 @@ const MarketPlace: React.FC<MarketPlaceProps> = ({address}) => {
         }
     }
 
-    console.log("snackbar: ", open);
     return (     
             <div className={classes.root} >
                         <Header address={address} />

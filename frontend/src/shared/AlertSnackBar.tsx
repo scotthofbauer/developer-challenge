@@ -13,9 +13,8 @@ interface AlertSnackBarProps {
 
 const AlertSnackBar:React.FC<AlertSnackBarProps> = ({closeSnackBar, success, message}) => {
 
-    
     const action = (
-        <React.Fragment>
+       <>
           <IconButton
             size="small"
             aria-label="close"
@@ -24,7 +23,7 @@ const AlertSnackBar:React.FC<AlertSnackBarProps> = ({closeSnackBar, success, mes
           >
             <CloseIcon fontSize="small" />
           </IconButton>
-        </React.Fragment>
+        </>
     );
 
 
@@ -40,8 +39,7 @@ const AlertSnackBar:React.FC<AlertSnackBarProps> = ({closeSnackBar, success, mes
                 <Alert 
                     onClose={closeSnackBar} 
                     severity={success ? "success" : "error"} 
-                    color={success ? "success" : "error"} 
-                    sx={{ width: '100%',   }}>
+                    sx={{ width: '100%' }}>
                     {message}
                 </Alert>
                 

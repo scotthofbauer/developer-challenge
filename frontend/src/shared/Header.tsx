@@ -1,103 +1,141 @@
-import React from 'react';
-import { AppBar, Grid, Link, Theme, Typography } from '@mui/material';
+import React, { useState } from 'react';
+import { AppBar, Divider, Drawer, Hidden, IconButton, Link, List, ListItem, Theme, Toolbar } from '@mui/material';
 import { makeStyles } from '@mui/styles';
 import { useNavigate } from "react-router-dom";
+import MenuIcon from '@mui/icons-material/Menu';
+import ChevronRightIcon from '@mui/icons-material/ChevronRight';
 
+ 
 export interface HeaderProps {
     address: string | null;
 }
 
 const useStyles = makeStyles((theme: Theme) => ({
-    root: {
-    //    display: 'flex',
-    //    flexFlow: 'row wrap',
-    //    justifyContent: 'space-around',
-    //    listStyle: 'none',
-        background: `${theme.palette.primary.dark}`,
-    },
-    title: {
-        flexGrow: 1, 
-    },
-    gridContainer: {
-        margin: '20px'
+    link: {
+        marginRight: '20px',
+        float: 'right'
     }
-
-    // appbarTitle: {
-    //     flexGrow: 1,       
-    // },
-    // links: {
-    //     padding: '10px'
-    // }
 }));
 
 
+const Header:React.FC<HeaderProps> = ({address}) => {
+   const classes = useStyles();
+   const navigate = useNavigate();
+   const [open, setOpen] = useState<boolean>(false);
 
-const Header: React.FC<HeaderProps> = ({address}: HeaderProps) => {
-    const classes = useStyles();
-    const navigate = useNavigate();
-
-    return (
-        <div className={classes.root} >
-            <AppBar 
-                position="sticky"
-                color="transparent">
-                <Grid container className={classes.gridContainer}>
-                    <Grid item xs={12} sm={7.3} >
+   return (
+        <AppBar position='sticky' sx={{background: '#252323'}}>
+                <Toolbar disableGutters>
+                    <Link
+                        className={classes.link}
+                        component="button"
+                        variant="button"
+                        color='#f3e0ec'
+                        underline='hover'
+                        onClick={() => {
+                            navigate('/');
+                        }}
+                        sx={{marginRight: 'auto', marginLeft: '20px'}}          
+                                
+                    >
+                        Hoff Industries NFT Market
+                    </Link>
+                    <Hidden smDown >
                         <Link
-                            component="button"
-                            variant="button"
-                            color='#f3e0ec'
-                            underline='hover'
-                            onClick={() => {
-                                navigate('/');
-                            }}                 
-                                       
-                        >
-                            Hoff Industries NFT Market
-                        </Link>
-                    </Grid>
-                    <Grid item xs={12} sm={0.5}>
-                        <Link
+                            className={classes.link}
                             component="button"
                             variant="button"
                             color='#ffffff'
                             underline='hover'
                             onClick={() => {
                                 navigate('/');
-                            }}                            
+                            }}
+                            sx={{marginRight: '20px'}}                               
                         >
                             Home
                         </Link>
-
-                    </Grid>
-                    <Grid item xs={12} sm={1}>
                         <Link
+                            className={classes.link}
                             component="button"
                             variant="button"
                             color='#ffffff'
                             underline='hover'
                             onClick={() => {
                                 navigate('/marketplace');
-                            }}                            
+                            }}
+                            sx={{marginRight: '20px'}}                             
                         >
                             Marketplace
                         </Link>
-                    </Grid>
-                    <Grid item xs={false} sm={1}>
-                         <Typography color="white">
-                            <b>{address? address : "Connect Wallet"} </b>
-                        </Typography> 
-                        {/* <Button
-                            variant='contained'
-                            color='error'
+                        <Link
+                            className={classes.link}
+                            component="p"
+                            variant="button"
+                            color='#ffffff'
+                            underline='none'
+                            sx={{marginRight: '20px'}}                 
                         >
-                            {address? address : "Connect"}
-                        </Button>                         */}
-                    </Grid>
-                </Grid>
-            </AppBar>
-        </div>
-    )
+                            <b>{address? address : "Connect Wallet"} </b>
+                        </Link>
+                    </Hidden>
+                    <Hidden smUp>
+                        <IconButton onClick={() => setOpen(true)}>
+                            <MenuIcon />
+                        </IconButton>
+                    </Hidden>
+                    <Drawer 
+                        anchor='right' 
+                        open={open}
+                        onClose={() => setOpen(false)}
+                        PaperProps={{
+                            sx: {
+                              backgroundColor: "#252323",
+                              
+                            }
+                          }}    
+                    >
+                        <div>
+                            <IconButton>
+                                <ChevronRightIcon onClick={() => setOpen(false)}/>
+                            </IconButton>
+                        </div>
+                        <Divider />
+                        <List>
+                            <ListItem>
+                                <Link
+                                    className={classes.link}
+                                    component="button"
+                                    variant="button"
+                                    color='#FCF7F8'
+                                    underline='none'
+                                    onClick={() => {
+                                        navigate('/');
+                                    }}
+                                    sx={{marginRight: '20px'}}                               
+                                >
+                                    Home
+                                </Link>
+                            </ListItem>
+                            <ListItem>
+                                <Link
+                                    className={classes.link}
+                                    component="button"
+                                    variant="button"
+                                    color='#FCF7F8'
+                                    underline='none'
+                                    onClick={() => {
+                                        navigate('/marketplace');
+                                    }}
+                                    sx={{marginRight: '20px'}}                             
+                                >
+                                    Marketplace
+                                </Link>
+                            </ListItem>
+                        </List>
+                    </Drawer>
+                </Toolbar>
+        </AppBar>
+   )
 }
 
 export default Header;
