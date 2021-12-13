@@ -55,7 +55,7 @@ With these Creds:
 Add these creds:
 
 Usename: u0b0v1fncu
-Password: JKV936TsLSqtgdTDTGY8fmXckWLIfCczfb2CP0RoP7s
+Password: ~see repo owner~
 
 4. Import from one of these 4 Accounts
 
