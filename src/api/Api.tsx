@@ -116,7 +116,7 @@ export const burnToken = async (address: string, walletID: string, token: Token)
             {
                 // HD-runtimeID-walletID-index
                 params: {
-                    'kld-from': `HD-${config.HD_WALLET_RUNTIME}-${walletID}-1`,
+                    'kld-from': `HD-${config.HD_WALLET_RUNTIME}-${walletID}-0`,
                     'kld-sync': true
                 },
             });
@@ -158,7 +158,7 @@ export const transferToken = async (addressFrom: string, addressTo: string, wall
             {
                 // HD-runtimeID-walletID-index
                 params: {
-                    'kld-from': `HD-${config.HD_WALLET_RUNTIME}-${walletID}-1`,
+                    'kld-from': `HD-${config.HD_WALLET_RUNTIME}-${walletID}-0`,
                     'kld-sync': true
                 },
             });
