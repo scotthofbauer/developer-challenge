@@ -57,18 +57,15 @@ const NFTCard: React.FC<NFTCardProps> = ({token, handleModal, setSelectedNFT, se
           <div>
             <CardContent className={classes.content}>
                 <Typography variant="h5" component="div" className={classes.text}>
-                  {token?.product?.name}
+                  {token?.product?.name} 
+                  {(address === token?.product?.owner) && (
+                  <StarIcon />)}
                 </Typography>
                 <Typography gutterBottom variant="h6" className={classes.text}>
                   Year: {token?.product?.year}
                 </Typography>
                 <Typography gutterBottom variant="body2" className={classes.text}>
-                Owner: {token?.product?.owner}
-                </Typography>
-                <Typography gutterBottom variant="body2" className={classes.text}>
-                {(address === token?.product?.owner) && (
-                  <StarIcon />
-                )}
+                Owner: {token?.product?.owner} 
                 </Typography>
                 <Typography variant="body2" component="div" className={classes.text}>
                   Expiration: {token?.expiration}
@@ -94,6 +91,7 @@ const NFTCard: React.FC<NFTCardProps> = ({token, handleModal, setSelectedNFT, se
                 
                 sx={{background: "#252323", color: '#FCF7F8'}}
                 >Redeem</Button>
+                
             </CardActions>
           </div>
         </Card>

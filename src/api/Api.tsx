@@ -18,8 +18,11 @@ const expirationDate = "12/13/2022";
 
 export const mintToken = async (address: string) => {
     try{
+        //Gets Random productID of available NFTs
         const productId = await getRandomProductID();
+        //Generates a random TokenID
         const newTokenId = Math.floor(Math.random() * 20000000);
+        
         if(productId && newTokenId){
             const res:MintTokenKaliedoResponse = await contractInstance.post('/mint', 
             {
