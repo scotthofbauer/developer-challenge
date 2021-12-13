@@ -65,20 +65,24 @@ Select an account to import:
     ID: pk8jrx4l
     Address: 0xc7D0CF8ed168C341fA538618A6467638DE73237F
     Private Key: a4ea93a30f44a0bf2133975b050115ca0f18843f5640724ac8ccfa14c112e11d
+    Recover Passphrase: dumb tail breeze half spare rack girl vendor umbrella kid chase fit
 
     Wallet:
     ID: 8ogqhokb
     Address: 0xcfd25f87B74e610ED3c09C4017e146E23fE7ADD9
     Private Key: f099e965699dbe82cb7e69dacb48085b3d331596d2bc05a59dd257b8aa45eb5a
+    Recover PassPhrase: hungry image harvest uphold uphold noise blue camera seminar option debris coil
 
     Wallet:
     ID: 60x5q74v
     Address: 0x3007A5dF53b5541F41c36fdA0F24345e30Dc2aF7
     Private Key: 31a08f7800784518797cab0e454985be277da3b5cfcd8628200febb3e094bf29
+    Recover PassPhrase: asthma scan donkey wonder desert tiger toilet annual boat filter rib diamond
 
     Wallet:
     ID: gwgbctuu
     Address: 0x1B0a0C195528174772764160157fE52d84488d7E
     Private Key: a250d25b3fcaffb0fc2cf4823becf33372c9508d5321313c393c71c6fa99c6c3
+    Recover PassPhrase: alarm pizza common shaft lake brother benefit lucky wall afraid under tortoise
 
 5. You're all done!
