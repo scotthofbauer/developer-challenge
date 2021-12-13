@@ -12,6 +12,7 @@ export interface LandingPageProps {
 
 const exampleToken: Token = {
     id: "123",
+    expiration: '12/13/2022',
     product: {
         id: '123',
         owner: '0x12345678901234567899212345',
@@ -24,6 +25,7 @@ const exampleToken: Token = {
         __typename: 'Product',
         createdAt: 'now',
         updatedAt: 'now'
+        
     },
     __typename: 'Token',
     createdAt: '',

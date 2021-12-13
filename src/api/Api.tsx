@@ -22,7 +22,7 @@ export const mintToken = async (address: string) => {
         const productId = await getRandomProductID();
         //Generates a random TokenID
         const newTokenId = Math.floor(Math.random() * 20000000);
-        
+        //Checks that there's an available NFT and tokenID
         if(productId && newTokenId){
             const res:MintTokenKaliedoResponse = await contractInstance.post('/mint', 
             {
@@ -36,6 +36,7 @@ export const mintToken = async (address: string) => {
                 },
 
             });
+            //If Kaleido transaction is successful then execute DynamoDB updates
             if(res.data.headers.type === 'TransactionSuccess') {
                 //Insert New Token to GraphQL
                 const newTokenDetails = {
@@ -45,6 +46,7 @@ export const mintToken = async (address: string) => {
                     expiration: expirationDate
 
                 };
+                //Create Token on DynamoDB
                 let newTokenResult = (await API.graphql(graphqlOperation(mutations.createToken, {input: newTokenDetails})) as any);
                 //Update Product to link to new Token
                 const updateProductDetails: UpdateProductInput = {
@@ -57,7 +59,6 @@ export const mintToken = async (address: string) => {
                 //Work Around because newTokenResult doesn't have the owner, 
                 //that is returned on updateProduct response. This is for UI purposes
                 newTokenResult.data.createToken.product.owner = updateProductDetailsResult.data.updateProduct.owner;
-
                 return newTokenResult;
             }
             return null;
@@ -71,7 +72,7 @@ export const mintToken = async (address: string) => {
 
 export const burnToken = async (address: string, walletID: string, token: Token) => {
     try {
-        //checks to make sure the address trying to burn a token owns the token
+        //checks to make sure the address trying to burn a token owns the token and token is associated with a product
         const checkOwnerResult = await getOwner(token);
         if(checkOwnerResult === address && token.product){
             console.log("kld-from: ", `HD-${config.HD_WALLET_RUNTIME}-${walletID}-0`);
@@ -162,6 +163,7 @@ export const getOwner = async (token: Token) => {
 
 
 export const getRandomProductID = async () => {
+    //pulls products that haven't been minted or redeemed
     try{
         let filter = {
             minted: {
@@ -172,12 +174,14 @@ export const getRandomProductID = async () => {
             }
 
         };
+        //Get available products to Mint
         const availableProducts = (await API.graphql(graphqlOperation(queries.listProducts, {filter: filter})) as any);
         const items = availableProducts.data.listProducts.items;
         let ids:String[] = [];
         items.forEach((item:Product) =>  {
             ids.push(item.id);
         })
+        //Random Index
         const randomIndex = Math.floor(Math.random() * ids.length);
         const selectedId = ids[randomIndex];
         return selectedId

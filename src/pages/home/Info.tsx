@@ -31,7 +31,7 @@ const Info = () => {
             <Grid container spacing={5}>
                 <Grid item xs={0} sm={1}></Grid>
                 <Grid item xs={10} className={classes.title}>
-                    <h1>A world-first decentralised platform for consumers to purchase NFTs that allow ability to the ability to redeem product or sell right to ownership.</h1>
+                    <h1>A world-first decentralized platform for consumers to purchase NFTs that allow ability to redeem product or sell right to ownership.</h1>
                 </Grid>
                 <Grid item xs={0} sm={1}></Grid>
 
@@ -40,13 +40,14 @@ const Info = () => {
                     <Card>
                         <CardContent className={classes.card}>
                         <Typography gutterBottom variant="h5" component="div" className={classes.text}>
-                            How Nike NFTs work
+                            How Hoff Industries NFTs work
                         </Typography>
                             <Typography variant="body2" className={classes.text}>
-                                Lorem ipsum dolor sit amet, consectetur adipiscing elit, 
-                                sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. 
-                                Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris 
-                                nisi ut aliquip ex ea commodo consequat.                  
+                               Supported through the Kaleido Blockchain platform. By connecting your MetaMask account,
+                               a Consumer is able to purchase the ownership rights to an exclusive Hoff Industry NFT.
+                               By owning this NFT it gives the ability to resell the ownership rights or redeem the 
+                               NFT in order to recieve the product. Note all NFTs contain an expiration date that will
+                               require owners to redeem by that date.               
                             </Typography>
                         </CardContent>
                         <CardActions className={classes.button}>
@@ -65,13 +66,13 @@ const Info = () => {
                     <Card>
                         <CardContent className={classes.card}>
                         <Typography gutterBottom variant="h5" component="div" className={classes.text}>
-                            How Nike NFTs work
+                            How to Sell or Redeem
                         </Typography>
                             <Typography variant="body2" className={classes.text}>
-                                Lorem ipsum dolor sit amet, consectetur adipiscing elit, 
-                                sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. 
-                                Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris 
-                                nisi ut aliquip ex ea commodo consequat.                  
+                                Ownership of an NFT will be indicated by a star icon along with the owner's address displayed
+                                on the NFT Card. To sell an NFT, first input the address of the individual that will assume ownership
+                                of the NFT next, insert your personal HD Wallet ID. To Redeem, insert your personal Wallet ID and Hoff
+                                industries will ship you your product.                  
                             </Typography>
                         </CardContent>
                         <CardActions className={classes.button}>
