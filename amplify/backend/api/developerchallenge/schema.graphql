@@ -1,0 +1,36 @@
+# This "input" configures a global authorization rule to enable public access to
+# all models in this schema. Learn more about authorization rules here: https://docs.amplify.aws/cli/graphql/authorization-rules
+input AMPLIFY {
+  globalAuthRule: AuthRule = { allow: public }
+} # FOR TESTING ONLY!
+type Contract @model {
+  id: ID!
+  title: String!
+  gatewayAPIId: String!
+  isERCBurnable: Boolean!
+  isERCMintable: Boolean!
+  isERC721: Boolean!
+  isERC20: Boolean!
+  creator: String!
+  contractName: String!
+  tokens: [Token] @hasMany
+}
+
+type Token @model {
+  id: ID!
+  contract: Contract @belongsTo
+  product: Product @hasOne
+  price: Float
+}
+
+type Product @model {
+  id: ID!
+  owner: String
+  token: Token @belongsTo
+  img: String!
+  name: String!
+  brand: String!
+  year: String!
+  minted: Boolean!
+  redeemed: Boolean!
+}
