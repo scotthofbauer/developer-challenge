@@ -189,6 +189,9 @@ const LandingPage: React.FC<LandingPageProps> = ({address}: LandingPageProps) =>
                                             <Typography gutterBottom variant="body2" className={classes.text}>
                                             Owner: {defaultToken?.product?.owner}
                                             </Typography>
+                                            <Typography variant="body2" component="div" className={classes.text}>
+                                            Expiration: {defaultToken?.expiration}
+                                            </Typography>
                                         </CardContent>
                                     </Card>
                                 </Box>

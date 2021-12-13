@@ -5,7 +5,7 @@ import * as mutations from '../graphql/mutations';
 import * as queries from '../graphql/queries';
 // import config from '../config.json';
 import config from '../config.json';
-import { DeleteTokenInput, Product, Token, UpdateProductInput, UpdateProductMutation } from '../API';
+import { DeleteTokenInput, DeleteTokenMutation, Product, Token, UpdateProductInput, UpdateProductMutation } from '../API';
 import { MintTokenKaliedoResponse } from './Models';
 
 const contractUrl = `${config.KALEIDO_REST_GATEWAY_URL}/instances/${config.CONTRACT_ADDRESS}`
@@ -14,7 +14,7 @@ const contractInstance = axios.create({
     timeout: 30000,
     headers: {'Authorization': `${config.BASIC_AUTH}`}
 });
-
+const expirationDate = "12/13/2022";
 
 export const mintToken = async (address: string) => {
     try{
@@ -39,10 +39,10 @@ export const mintToken = async (address: string) => {
                     id: newTokenId.toString(),
                     contractTokensId: `${config.CONTRACT_ADDRESS}`,
                     tokenProductId: productId.toString(),
+                    expiration: expirationDate
+
                 };
                 let newTokenResult = (await API.graphql(graphqlOperation(mutations.createToken, {input: newTokenDetails})) as any);
-
-                console.log("newTokenResult: ", newTokenResult);
                 //Update Product to link to new Token
                 const updateProductDetails: UpdateProductInput = {
                     id: productId.toString(),
@@ -51,8 +51,6 @@ export const mintToken = async (address: string) => {
                     owner: `${address}`,
                 }
                 const updateProductDetailsResult = (await API.graphql(graphqlOperation(mutations.updateProduct, {input: updateProductDetails})) as any);
-                console.log("updateProductDetailsResult: ", updateProductDetailsResult)
-
                 //Work Around because newTokenResult doesn't have the owner, 
                 //that is returned on updateProduct response. This is for UI purposes
                 newTokenResult.data.createToken.product.owner = updateProductDetailsResult.data.updateProduct.owner;
@@ -94,13 +92,11 @@ export const burnToken = async (address: string, walletID: string, token: Token)
                     owner: "",
                     redeemed: true
                 }
-                const deleteTokenDetails: DeleteTokenInput ={
+                const deleteTokenDetails: DeleteTokenInput = {
                     id: token.id
-                }
-                console.log("updateProductDetails", updateProductDetails);
-                ////check!
+                };
                 (await API.graphql(graphqlOperation(mutations.updateProduct, {input: updateProductDetails})) as UpdateProductMutation);
-                (await API.graphql(graphqlOperation(mutations.deleteToken, {input: deleteTokenDetails})) as any);
+                (await API.graphql(graphqlOperation(mutations.deleteToken, {input: deleteTokenDetails})) as DeleteTokenMutation);
                 return res.data
             }
         }
@@ -135,7 +131,7 @@ export const transferToken = async (addressFrom: string, addressTo: string, wall
                 }
 
                 console.log("updateProductDetails", updateProductDetails);
-                (await API.graphql(graphqlOperation(mutations.updateProduct, {input: updateProductDetails})) as any);
+                (await API.graphql(graphqlOperation(mutations.updateProduct, {input: updateProductDetails})) as UpdateProductMutation);
                 return res.data;
             }
         }

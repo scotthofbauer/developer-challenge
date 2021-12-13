@@ -21,6 +21,7 @@ type Token @model {
   contract: Contract @belongsTo
   product: Product @hasOne
   price: Float
+  expiration: String
 }
 
 type Product @model {

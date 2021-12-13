@@ -18,6 +18,7 @@ export const onCreateContract = /* GraphQL */ `
         items {
           id
           price
+          expiration
           createdAt
           updatedAt
           contractTokensId
@@ -46,6 +47,7 @@ export const onUpdateContract = /* GraphQL */ `
         items {
           id
           price
+          expiration
           createdAt
           updatedAt
           contractTokensId
@@ -74,6 +76,7 @@ export const onDeleteContract = /* GraphQL */ `
         items {
           id
           price
+          expiration
           createdAt
           updatedAt
           contractTokensId
@@ -112,6 +115,7 @@ export const onCreateToken = /* GraphQL */ `
         token {
           id
           price
+          expiration
           createdAt
           updatedAt
           contractTokensId
@@ -128,6 +132,7 @@ export const onCreateToken = /* GraphQL */ `
         productTokenId
       }
       price
+      expiration
       createdAt
       updatedAt
       contractTokensId
@@ -161,6 +166,7 @@ export const onUpdateToken = /* GraphQL */ `
         token {
           id
           price
+          expiration
           createdAt
           updatedAt
           contractTokensId
@@ -177,6 +183,7 @@ export const onUpdateToken = /* GraphQL */ `
         productTokenId
       }
       price
+      expiration
       createdAt
       updatedAt
       contractTokensId
@@ -210,6 +217,7 @@ export const onDeleteToken = /* GraphQL */ `
         token {
           id
           price
+          expiration
           createdAt
           updatedAt
           contractTokensId
@@ -226,6 +234,7 @@ export const onDeleteToken = /* GraphQL */ `
         productTokenId
       }
       price
+      expiration
       createdAt
       updatedAt
       contractTokensId
@@ -267,6 +276,7 @@ export const onCreateProduct = /* GraphQL */ `
           productTokenId
         }
         price
+        expiration
         createdAt
         updatedAt
         contractTokensId
@@ -318,6 +328,7 @@ export const onUpdateProduct = /* GraphQL */ `
           productTokenId
         }
         price
+        expiration
         createdAt
         updatedAt
         contractTokensId
@@ -369,6 +380,7 @@ export const onDeleteProduct = /* GraphQL */ `
           productTokenId
         }
         price
+        expiration
         createdAt
         updatedAt
         contractTokensId

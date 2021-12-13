@@ -70,6 +70,9 @@ const NFTCard: React.FC<NFTCardProps> = ({token, handleModal, setSelectedNFT, se
                   <StarIcon />
                 )}
                 </Typography>
+                <Typography variant="body2" component="div" className={classes.text}>
+                  Expiration: {token?.expiration}
+                </Typography>
             </CardContent>
             <CardActions className={classes.buttonContainer}>
               <Button 
