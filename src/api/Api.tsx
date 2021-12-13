@@ -5,7 +5,7 @@ import * as mutations from '../graphql/mutations';
 import * as queries from '../graphql/queries';
 // import config from '../config.json';
 import config from '../config.json';
-import { DeleteTokenInput, Product, Token, UpdateProductInput } from '../API';
+import { DeleteTokenInput, Product, Token, UpdateProductInput, UpdateProductMutation } from '../API';
 import { MintTokenKaliedoResponse } from './Models';
 
 const contractUrl = `${config.KALEIDO_REST_GATEWAY_URL}/instances/${config.CONTRACT_ADDRESS}`
@@ -66,32 +66,7 @@ export const mintToken = async (address: string) => {
     }
 }
 
-export const getRandomProductID = async () => {
-    try{
-        let filter = {
-            minted: {
-                eq: false
-            },
-            redeemed: {
-                eq: false
-            }
 
-        };
-        const availableProducts = (await API.graphql(graphqlOperation(queries.listProducts, {filter: filter})) as any);
-        const items = availableProducts.data.listProducts.items;
-        let ids:String[] = [];
-        items.forEach((item:Product) =>  {
-            ids.push(item.id);
-        })
-        const randomIndex = Math.floor(Math.random() * ids.length);
-        const selectedId = ids[randomIndex];
-        console.log(selectedId);
-        console.log(ids);
-        return selectedId
-    }catch(error: any) {
-        throw new Error(error);
-    }
-}
 
 export const burnToken = async (address: string, walletID: string, token: Token) => {
     try {
@@ -123,7 +98,8 @@ export const burnToken = async (address: string, walletID: string, token: Token)
                     id: token.id
                 }
                 console.log("updateProductDetails", updateProductDetails);
-                (await API.graphql(graphqlOperation(mutations.updateProduct, {input: updateProductDetails})) as any);
+                ////check!
+                (await API.graphql(graphqlOperation(mutations.updateProduct, {input: updateProductDetails})) as UpdateProductMutation);
                 (await API.graphql(graphqlOperation(mutations.deleteToken, {input: deleteTokenDetails})) as any);
                 return res.data
             }
@@ -138,7 +114,6 @@ export const transferToken = async (addressFrom: string, addressTo: string, wall
         //checks to make sure the address trying to burn a token owns the token
         const checkOwnerResult = await getOwner(token);
         if(checkOwnerResult === addressFrom && token.product){
-            console.log("kld-from: ", `HD-${config.HD_WALLET_RUNTIME}-${walletID}-1`);
             const res = await contractInstance.post('/transferFrom', 
             {
                 from: `${addressFrom}`,
@@ -186,3 +161,27 @@ export const getOwner = async (token: Token) => {
 }
 
 
+export const getRandomProductID = async () => {
+    try{
+        let filter = {
+            minted: {
+                eq: false
+            },
+            redeemed: {
+                eq: false
+            }
+
+        };
+        const availableProducts = (await API.graphql(graphqlOperation(queries.listProducts, {filter: filter})) as any);
+        const items = availableProducts.data.listProducts.items;
+        let ids:String[] = [];
+        items.forEach((item:Product) =>  {
+            ids.push(item.id);
+        })
+        const randomIndex = Math.floor(Math.random() * ids.length);
+        const selectedId = ids[randomIndex];
+        return selectedId
+    }catch(error: any) {
+        throw new Error(error);
+    }
+}

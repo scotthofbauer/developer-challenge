@@ -1,46 +1,84 @@
-# Getting Started with Create React App
+# The Idea
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+This repo is an NFT Marketplace with the ability to mint, transfer, and redeem NFTs from a fake popular shoe brand - Hoff Industries.
 
-## Available Scripts
+### The idea behind this project is as follows:
 
-In the project directory, you can run:
+Hoff Industries is an up and coming hot startup that has been producing the most marketable shoes in the country. Each time Hoff Industries releases a new shoe, their inventory is immediately sold out and these shoes become worth more than the original price on secondary markets.
 
-### `yarn start`
+With such an exponential demand and possibility of high resell value. Hoff Industries has encountered some issue with scammers claiming to own a pair of exlusive Hoff Industry sneakers and reselling counterfits. The community has been outspoken about this problem and Hoff Industry is starting to see a dip in sales due to these scammers.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+### Solution:
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+Hoff Industries is releasing an NFT platform that will allow consumers to buy the right to own a shoe via ERC-721 tokens. By purchasing an NFT, that NFT will provide proof of ownership of an exlusive Hoff Industry shoe.
 
-### `yarn test`
+When a consumer purchases an NFT, that individual has two options. First, they can redeem the NFT, which will allow them to actually recieve the manufactured shoe. Conversly, they would have the option to sell the NFT to another consumer for possibly a higher price than what that individual paid for.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+Hoff Industries NFT marketplace provides a secure and trustworthy place to not only mint new NFTs but also encourages the secondary market of peer to peer buying and selling the ownership of an NFT.
 
-### `yarn build`
+# Project Stack.
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+### Frontend
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+    1. React
+    2. Material UI
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+### Backend
 
-### `yarn eject`
+    1. Kaliedo Platform
+    2. AWS Amplify
+    3. GraphQL
+    4. AWS DynamoDB
+    5. AWS S3
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+### MetaMask Instructions
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+In order to properly use this application. One will have to configure MetaMask to use the Kaliedo Network.
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+1. Go to MetaMask and sign into your current account.
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+![step 1](./MetaMaskInstructionImgs/step1.jpg)
 
-## Learn More
+2. Create a Network
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+![step 2](./MetaMaskInstructionImgs/step2.jpg)
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+With these Creds:
+
+- RPC URL: https://u0rymjyyct-u0fj2prbvx-rpc.us0-aws.kaleido.io
+- Chain ID: 2131130125
+
+3. Will Prompt for a UserName and Password
+
+![step 3](./MetaMaskInstructionImgs/step3.jpg)
+
+Add these creds:
+
+Usename: u0b0v1fncu
+Password: JKV936TsLSqtgdTDTGY8fmXckWLIfCczfb2CP0RoP7s
+
+4. Import from one of these 4 Accounts
+
+Select an account to import:
+
+    Wallet:
+    ID: pk8jrx4l
+    Address: 0xc7D0CF8ed168C341fA538618A6467638DE73237F
+    Private Key: a4ea93a30f44a0bf2133975b050115ca0f18843f5640724ac8ccfa14c112e11d
+
+    Wallet:
+    ID: 8ogqhokb
+    Address: 0xcfd25f87B74e610ED3c09C4017e146E23fE7ADD9
+    Private Key: f099e965699dbe82cb7e69dacb48085b3d331596d2bc05a59dd257b8aa45eb5a
+
+    Wallet:
+    ID: 60x5q74v
+    Address: 0x3007A5dF53b5541F41c36fdA0F24345e30Dc2aF7
+    Private Key: 31a08f7800784518797cab0e454985be277da3b5cfcd8628200febb3e094bf29
+
+    Wallet:
+    ID: gwgbctuu
+    Address: 0x1B0a0C195528174772764160157fE52d84488d7E
+    Private Key: a250d25b3fcaffb0fc2cf4823becf33372c9508d5321313c393c71c6fa99c6c3
+
+5. You're all done!

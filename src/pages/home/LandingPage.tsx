@@ -181,7 +181,7 @@ const LandingPage: React.FC<LandingPageProps> = ({address}: LandingPageProps) =>
                                         </div>
                                         <CardContent className={classes.cardContent}>
                                             <Typography variant="h5" component="div" className={classes.text}>
-                                            {exampleToken?.product?.name}
+                                            {defaultToken?.product?.name}
                                             </Typography>
                                             <Typography gutterBottom variant="h6" className={classes.text}>
                                             Year: {defaultToken?.product?.year}
